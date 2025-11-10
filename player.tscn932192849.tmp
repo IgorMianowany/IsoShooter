@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvhy6trwsa5bv"]
+
+[ext_resource type="Script" uid="uid://dyi8jls2of8s5" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sh265"]
+albedo_color = Color(1, 0.4, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4flbx"]
+material = SubResource("StandardMaterial3D_sh265")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_i3pqv"]
+material = SubResource("StandardMaterial3D_onrkg")
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1407638, 0)
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0714494, 0)
+shape = SubResource("BoxShape3D_sh265")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.067958236, 0)
+mesh = SubResource("BoxMesh_4flbx")
+
+[node name="CameraRig" type="Marker3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="CameraRig"]
+transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, -0.49999997, 0.49999997, -5, 8, 5)
+
+[node name="Cursor" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5045207, 0, 0, 0, 0.5045207, 0, 0, 0, 0.5045207, 8.595124, 0.4983182, 0)
+mesh = SubResource("SphereMesh_i3pqv")
