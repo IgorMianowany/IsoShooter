@@ -57,11 +57,10 @@ func look_at_cursor():
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
 	var cursor_pos = dropPlane.intersects_ray(from,to)
 	
-	# Set the position of cursor visualizer
-	cursor.global_transform.origin = cursor_pos + Vector3(0,1,0)
-	
-	# Make player look at the cursor
-	look_at(cursor_pos, Vector3.UP)
+	if cursor_pos != null:
+		cursor.global_transform.origin = cursor_pos + Vector3(0,1,0)
+		# Make player look at the cursor
+		look_at(cursor_pos, Vector3.UP)
 #
 #
 func run(delta):
