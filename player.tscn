@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvhy6trwsa5bv"]
+[gd_scene load_steps=13 format=3 uid="uid://bvhy6trwsa5bv"]
 
 [ext_resource type="Script" uid="uid://dyi8jls2of8s5" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://on5ll4epths2" path="res://rifle.tscn" id="2_onrkg"]
@@ -42,8 +42,11 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.13
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_onrkg"]
+radius = 0.77384794
+
 [node name="Player" type="CharacterBody3D"]
-collision_layer = 7
+collision_layer = 9
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -94,3 +97,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3422027, 0, -0.7223414)
 
 [node name="Rifle2" parent="." instance=ExtResource("2_onrkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.396862, 0, -0.7223414)
+
+[node name="AggroCollison" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AggroCollison"]
+shape = SubResource("SphereShape3D_onrkg")

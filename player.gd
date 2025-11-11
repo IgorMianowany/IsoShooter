@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 var camera_rotation_speed : float = 200
