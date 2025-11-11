@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://vncdxs0e6aws"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7xaro"]
+material = SubResource("StandardMaterial3D_7xaro")
+
+[node name="Enemy" type="CharacterBody3D"]
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 7.987195, 1.6406529, -0.28347015, 0.020599365)
+size = Vector3(14.123524, 6.1196136, 0.46954346)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.9483423, 0, 0, 0, 4.9545655, 0, 0, 0, 0.4560007, 0, 0, 0)
+mesh = SubResource("BoxMesh_7xaro")

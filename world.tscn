@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgcnjcjnheqjs"]
+[gd_scene load_steps=10 format=3 uid="uid://bgcnjcjnheqjs"]
 
 [ext_resource type="PackedScene" uid="uid://bvhy6trwsa5bv" path="res://player.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://vncdxs0e6aws" path="res://enemy.tscn" id="1_fj7yv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_f3sb7"]
 
@@ -83,3 +84,6 @@ transform = Transform3D(0.5700398, 0.82161707, 0, -0.43212682, 0.2998106, 0.8505
 light_energy = 2.0
 shadow_enabled = true
 sky_mode = 1
+
+[node name="Enemy" parent="." instance=ExtResource("1_fj7yv")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 9.697907, 2.1155424, -16.595482)

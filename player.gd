@@ -10,6 +10,7 @@ var move_direction = Vector3()
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
 @onready var cursor = $Cursor
+@onready var current_emitter = $MachineGunEmitter
 
 func _ready():
 	camera_rig.set_as_top_level(true)
@@ -20,6 +21,16 @@ func _ready():
 func _input(event):
 	if event.is_action("exit"):
 		get_tree().quit()
+	if event.is_action_pressed("shoot"):
+		current_emitter.restart()
+		current_emitter.emitting = true
+		print("emitting")
+	if event.is_action_released("shoot"):
+		current_emitter.emitting = false
+	if event.is_action("weapon_1"):
+		current_emitter = $MachineGunEmitter
+	if event.is_action("weapon_2"):
+		current_emitter = $ShotgunEmitter
 
 
 func _physics_process(delta):
@@ -58,7 +69,7 @@ func look_at_cursor():
 	var cursor_pos = dropPlane.intersects_ray(from,to)
 	
 	if cursor_pos != null:
-		cursor.global_transform.origin = cursor_pos + Vector3(0,1,0)
+		cursor.global_transform.origin = cursor_pos + Vector3(0,0,0)
 		# Make player look at the cursor
 		look_at(cursor_pos, Vector3.UP)
 #
