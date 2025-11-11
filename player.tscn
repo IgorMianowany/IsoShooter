@@ -94,4 +94,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3422027, 0, -0.7223414)
 
 [node name="Rifle2" parent="." instance=ExtResource("2_onrkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.396862, 0, -0.7223414)
-visible = false

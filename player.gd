@@ -14,8 +14,11 @@ var instance
 @onready var camera_rig = $CameraRig
 @onready var cursor = $Cursor
 @onready var current_emitter = $MachineGunEmitter
-@onready var gun_anim : AnimationPlayer = $"Rifle/SteampunkRifle/AnimationPlayer"
+@onready var gun_anim : AnimationPlayer = $Rifle/SteampunkRifle/AnimationPlayer
 @onready var gun_barrel = $Rifle/RayCast3D
+## second gun
+@onready var gun_anim2 : AnimationPlayer = $Rifle2/SteampunkRifle/AnimationPlayer
+@onready var gun_barrel2 = $Rifle2/RayCast3D
 
 func _ready():
 	camera_rig.set_as_top_level(true)
@@ -44,6 +47,12 @@ func _physics_process(delta):
 			instance = bullet.instantiate()
 			instance.position = gun_barrel.global_position
 			instance.transform.basis = gun_barrel.global_transform.basis
+			get_parent().add_child(instance)
+			
+			gun_anim2.play("shoot")
+			instance = bullet.instantiate()
+			instance.position = gun_barrel2.global_position
+			instance.transform.basis = gun_barrel2.global_transform.basis
 			get_parent().add_child(instance)
 			
 	
