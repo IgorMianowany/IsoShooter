@@ -7,10 +7,15 @@ var friction : float = 0.9
 var gravity : float = 100
 var move_direction = Vector3()
 
+var bullet := load("res://bullet.tscn")
+var instance
+
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
 @onready var cursor = $Cursor
 @onready var current_emitter = $MachineGunEmitter
+@onready var gun_anim : AnimationPlayer = $"Rifle/SteampunkRifle/AnimationPlayer"
+@onready var gun_barrel = $Rifle/RayCast3D
 
 func _ready():
 	camera_rig.set_as_top_level(true)
@@ -23,8 +28,7 @@ func _input(event):
 		get_tree().quit()
 	if event.is_action_pressed("shoot"):
 		current_emitter.restart()
-		current_emitter.emitting = true
-		print("emitting")
+		current_emitter.emitting = false
 	if event.is_action_released("shoot"):
 		current_emitter.emitting = false
 	if event.is_action("weapon_1"):
@@ -34,6 +38,15 @@ func _input(event):
 
 
 func _physics_process(delta):
+	if Input.is_action_pressed("shoot"):
+		if !gun_anim.is_playing():
+			gun_anim.play("shoot")
+			instance = bullet.instantiate()
+			instance.position = gun_barrel.global_position
+			instance.transform.basis = gun_barrel.global_transform.basis
+			get_parent().add_child(instance)
+			
+	
 	camera_follows_player()
 	rotate_camera(delta)
 	

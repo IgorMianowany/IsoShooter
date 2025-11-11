@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckr20d5f0pvmi"]
+
+[ext_resource type="PackedScene" uid="uid://cyrbg8vyr0js5" path="res://Steampunk Rifle.glb" id="1_1g8os"]
+
+[sub_resource type="Animation" id="Animation_5xxu6"]
+length = 0.1
+step = 0.01
+
+[sub_resource type="Animation" id="Animation_sf0wx"]
+resource_name = "shoot"
+length = 0.1
+step = 0.01
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.01, 1, 0, 0, 0.05, 0.1, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dq6n1"]
+_data = {
+&"RESET": SubResource("Animation_5xxu6"),
+&"shoot": SubResource("Animation_sf0wx")
+}
+
+[node name="Steampunk Rifle" instance=ExtResource("1_1g8os")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_dq6n1")
+}

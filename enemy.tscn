@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://vncdxs0e6aws"]
+[gd_scene load_steps=7 format=3 uid="uid://vncdxs0e6aws"]
+
+[ext_resource type="Script" uid="uid://pp628fuvmygj" path="res://enemy.gd" id="1_4gyqm"]
+[ext_resource type="Script" uid="uid://cnwx1e6xll8q7" path="res://body_part.gd" id="1_7k104"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
 albedo_color = Color(1, 0, 0, 1)
@@ -6,12 +9,36 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_7xaro"]
 material = SubResource("StandardMaterial3D_7xaro")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
+size = Vector3(1.9585571, 4.8310547, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qi2p4"]
+size = Vector3(1.8939819, 5.0499268, 0.7489011)
+
 [node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_4gyqm")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 7.987195, 1.6406529, -0.28347015, 0.020599365)
+visible = false
 size = Vector3(14.123524, 6.1196136, 0.46954346)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.9483423, 0, 0, 0, 4.9545655, 0, 0, 0, 0.4560007, 0, 0, 0)
 mesh = SubResource("BoxMesh_7xaro")
+
+[node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_7k104")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011383057, 0.05419922, 0)
+shape = SubResource("BoxShape3D_4gyqm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011833504, 0.00991106, -0.0012253523)
+shape = SubResource("BoxShape3D_qi2p4")
+
+[connection signal="body_part_hit" from="Area3D" to="." method="_on_area_3d_body_part_hit"]

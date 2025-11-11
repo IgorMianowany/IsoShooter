@@ -35,6 +35,8 @@ volumetric_fog_albedo = Color(0.076104105, 0.2715011, 0.2715011, 1)
 
 [node name="Floor" type="StaticBody3D" parent="Map"]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
 
 [node name="Mesh" type="MeshInstance3D" parent="Map/Floor"]
 transform = Transform3D(595.48, 0, 0, 0, 0.99999994, 0, 0, 0, 487.08505, 0, 0, 0)
@@ -47,27 +49,36 @@ shape = SubResource("ConcavePolygonShape3D_f3sb7")
 
 [node name="Obstacle" type="MeshInstance3D" parent="Map"]
 transform = Transform3D(2.0182762, 0, 0, 0, 8.586099, 0, 0, 0, 7.142314, 20.232191, 4.793049, 0.25449085)
+layers = 3
 mesh = SubResource("BoxMesh_fj7yv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Obstacle"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Obstacle/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fj7yv")
 
 [node name="Ramp" type="MeshInstance3D" parent="Map"]
 transform = Transform3D(1.0091379, 7.435779, 0, -1.7478783, 4.2930484, 0, 0, 0, 7.1423144, -16.467947, 1.410614, -23.744526)
+layers = 3
 mesh = SubResource("BoxMesh_fj7yv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fj7yv")
 
 [node name="Ramp2" type="MeshInstance3D" parent="Map"]
 transform = Transform3D(-8.822165e-08, -8.586098, 0, 2.018276, -3.7531026e-07, 0, 0, 0, 7.1423144, -8.969261, 3.4153764, -23.744526)
+layers = 3
 mesh = SubResource("BoxMesh_fj7yv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Ramp2"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ramp2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fj7yv")
@@ -81,7 +92,7 @@ environment = SubResource("Environment_tlwt5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.5700398, 0.82161707, 0, -0.43212682, 0.2998106, 0.8505175, 0.6987997, -0.48482883, 0.52594674, 68.89986, 58.47956, 128.23676)
-light_energy = 2.0
+light_energy = 0.7
 shadow_enabled = true
 sky_mode = 1
 
