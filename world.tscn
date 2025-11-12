@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bgcnjcjnheqjs"]
+[gd_scene load_steps=20 format=4 uid="uid://bgcnjcjnheqjs"]
 
 [ext_resource type="PackedScene" uid="uid://bvhy6trwsa5bv" path="res://player.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://vncdxs0e6aws" path="res://enemy.tscn" id="1_fj7yv"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://tl0ddhsfcqsh" path="res://brick_wall.tscn" id="5_dwbse"]
 [ext_resource type="PackedScene" uid="uid://bnbj755xl7dqm" path="res://brick_wall_end.tscn" id="6_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://di0qsd4hjicj6" path="res://cementary.tscn" id="8_gbfbk"]
+[ext_resource type="PackedScene" uid="uid://dlja2aykusv5t" path="res://poor_cementary.tscn" id="9_ioo17"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_f3sb7"]
 
@@ -447,3 +448,9 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.0490191, 0.42325544, 26.12
 
 [node name="Road40" parent="NewMap/Roads" instance=ExtResource("5_036b0")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.0490191, 0.42325544, 22.12413)
+
+[node name="PoorCementary" parent="NewMap" instance=ExtResource("9_ioo17")]
+transform = Transform3D(-5, 0, 4.371139e-07, 0, 5, 0, -4.371139e-07, 0, -5, 24, 0, 63)
+
+[node name="PoorCementary2" parent="NewMap" instance=ExtResource("9_ioo17")]
+transform = Transform3D(-5, 0, 4.371139e-07, 0, 5, 0, -4.371139e-07, 0, -5, -16, 0, 63)
