@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://da6l28ii7uo6w"
+path="res://.godot/imported/gravestone-cross.obj-d5fdf95b586c5495b476620aad3c22ad.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gravestone-cross.obj-d5fdf95b586c5495b476620aad3c22ad.mesh"]
+
+source_file="res://env/Models/OBJ format/gravestone-cross.obj"
+dest_files=["res://.godot/imported/gravestone-cross.obj-d5fdf95b586c5495b476620aad3c22ad.mesh", "res://.godot/imported/gravestone-cross.obj-d5fdf95b586c5495b476620aad3c22ad.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

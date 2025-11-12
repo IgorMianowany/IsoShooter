@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cfc4qkc1a6gx7"
+path="res://.godot/imported/pillar-obelisk.obj-2296fe94addcba0ffe8dec3688668b5e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/pillar-obelisk.obj-2296fe94addcba0ffe8dec3688668b5e.mesh"]
+
+source_file="res://env/Models/OBJ format/pillar-obelisk.obj"
+dest_files=["res://.godot/imported/pillar-obelisk.obj-2296fe94addcba0ffe8dec3688668b5e.mesh", "res://.godot/imported/pillar-obelisk.obj-2296fe94addcba0ffe8dec3688668b5e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
