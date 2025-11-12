@@ -1,0 +1,218 @@
+[gd_scene load_steps=7 format=3 uid="uid://di0qsd4hjicj6"]
+
+[ext_resource type="PackedScene" uid="uid://co6uwvoeumyqt" path="res://grave-d.tscn" id="1_nn7f6"]
+[ext_resource type="PackedScene" uid="uid://8u8xasica72y" path="res://grave-c.tscn" id="2_k8twe"]
+[ext_resource type="PackedScene" uid="uid://ckjufdy3v4iuo" path="res://grave-b.tscn" id="3_dej2s"]
+[ext_resource type="PackedScene" uid="uid://bwpupw7rla4uu" path="res://grave-a.tscn" id="4_arglr"]
+[ext_resource type="PackedScene" uid="uid://dx2fj3aqtfshi" path="res://iron_fence.tscn" id="5_dej2s"]
+[ext_resource type="PackedScene" uid="uid://py24y5hidhb4" path="res://iron_fence_bar.tscn" id="6_arglr"]
+
+[node name="Cementary" type="Node3D"]
+
+[node name="Graves" type="Node3D" parent="."]
+
+[node name="Grave" parent="Graves" instance=ExtResource("1_nn7f6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="Grave12" parent="Graves" instance=ExtResource("1_nn7f6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -1)
+
+[node name="Grave4" parent="Graves" instance=ExtResource("2_k8twe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="Grave6" parent="Graves" instance=ExtResource("2_k8twe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="Grave7" parent="Graves" instance=ExtResource("2_k8twe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1)
+
+[node name="Grave8" parent="Graves" instance=ExtResource("2_k8twe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="Grave3" parent="Graves" instance=ExtResource("3_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Grave10" parent="Graves" instance=ExtResource("3_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -1)
+
+[node name="Grave11" parent="Graves" instance=ExtResource("3_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 2)
+
+[node name="Grave2" parent="Graves" instance=ExtResource("4_arglr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="Grave5" parent="Graves" instance=ExtResource("4_arglr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Grave13" parent="Graves" instance=ExtResource("4_arglr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="Grave14" parent="Graves" instance=ExtResource("4_arglr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
+
+[node name="Grave9" parent="Graves" instance=ExtResource("4_arglr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 2)
+
+[node name="Fence" type="Node3D" parent="."]
+
+[node name="IronFence" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.443726, 0, -4)
+
+[node name="IronFence2" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.443726, 0, -4)
+
+[node name="IronFence49" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.443726, 0, -4)
+
+[node name="IronFence50" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.443726, 0, 5)
+
+[node name="IronFence3" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.443726, 0, -4)
+
+[node name="IronFence4" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.443726, 0, -4)
+
+[node name="IronFence5" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.443726, 0, -4)
+
+[node name="IronFence6" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4437261, 0, -4)
+
+[node name="IronFence7" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44372606, 0, -4)
+
+[node name="IronFence8" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55627394, 0, -4)
+
+[node name="IronFence9" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5562739, 0, -4)
+
+[node name="IronFence10" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.556274, 0, -4)
+
+[node name="IronFence11" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.556274, 0, -4)
+
+[node name="IronFence12" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.556274, 0, -4)
+
+[node name="IronFence13" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.556274, 0, -4)
+
+[node name="IronFence14" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.556274, 0, -4)
+
+[node name="IronFence15" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.457246, 0, -4)
+
+[node name="iron-fence-bar" parent="Fence" instance=ExtResource("6_arglr")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -8, 0, -4)
+
+[node name="iron-fence-bar2" parent="Fence" instance=ExtResource("6_arglr")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 8, 0, -4)
+
+[node name="IronFence16" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.443726, 0, 5)
+
+[node name="IronFence17" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.443726, 0, 5)
+
+[node name="IronFence18" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.443726, 0, 5)
+
+[node name="IronFence19" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.443726, 0, 5)
+
+[node name="IronFence20" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.443726, 0, 5)
+
+[node name="IronFence21" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4437261, 0, 5)
+
+[node name="IronFence22" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44372606, 0, 5)
+
+[node name="IronFence23" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55627394, 0, 5)
+
+[node name="IronFence24" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5562739, 0, 5)
+
+[node name="IronFence25" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.556274, 0, 5)
+
+[node name="IronFence26" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.556274, 0, 5)
+
+[node name="IronFence27" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.556274, 0, 5)
+
+[node name="IronFence28" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.556274, 0, 5)
+
+[node name="IronFence29" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.556274, 0, 5)
+
+[node name="IronFence30" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.457246, 0, 5)
+
+[node name="IronFence31" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 4.5)
+
+[node name="IronFence32" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 3.5)
+
+[node name="IronFence33" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 2.5)
+
+[node name="IronFence34" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 1.5)
+
+[node name="IronFence35" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 0.5)
+
+[node name="IronFence36" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, -0.5)
+
+[node name="IronFence37" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, -1.5)
+
+[node name="IronFence38" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, -2.5)
+
+[node name="IronFence39" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, -3.5)
+
+[node name="IronFence40" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 4.5)
+
+[node name="IronFence41" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 3.5)
+
+[node name="IronFence42" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 2.5)
+
+[node name="IronFence43" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 1.5)
+
+[node name="IronFence44" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0.5)
+
+[node name="IronFence45" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, -0.5)
+
+[node name="IronFence46" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, -1.5)
+
+[node name="IronFence47" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, -2.5)
+
+[node name="IronFence48" parent="Fence" instance=ExtResource("5_dej2s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, -3.5)
+
+[node name="iron-fence-bar3" parent="Fence" instance=ExtResource("6_arglr")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -8, 0, 5)
+
+[node name="iron-fence-bar4" parent="Fence" instance=ExtResource("6_arglr")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 8, 0, 5)
