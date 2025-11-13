@@ -51,6 +51,7 @@ collision_mask = 3
 
 [node name="stone-wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.39551818)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_d0ice")
 skeleton = NodePath("")
 
