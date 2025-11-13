@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bgcnjcjnheqjs"]
+[gd_scene load_steps=21 format=4 uid="uid://bgcnjcjnheqjs"]
 
 [ext_resource type="PackedScene" uid="uid://bvhy6trwsa5bv" path="res://player.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://vncdxs0e6aws" path="res://enemy.tscn" id="1_fj7yv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bnbj755xl7dqm" path="res://brick_wall_end.tscn" id="6_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://di0qsd4hjicj6" path="res://cementary.tscn" id="8_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://dlja2aykusv5t" path="res://poor_cementary.tscn" id="9_ioo17"]
+[ext_resource type="PackedScene" uid="uid://2ub8ydf6e1ii" path="res://lightpost.tscn" id="10_wse8f"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_f3sb7"]
 
@@ -450,7 +451,33 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.0490191, 0.42325544, 26.12
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.0490191, 0.42325544, 22.12413)
 
 [node name="PoorCementary" parent="NewMap" instance=ExtResource("9_ioo17")]
-transform = Transform3D(-5, 0, 4.371139e-07, 0, 5, 0, -4.371139e-07, 0, -5, 24, 0, 63)
+transform = Transform3D(-5, 0, 4.371139e-07, 0, 5, 0, -4.371139e-07, 0, -5, 21, 0, 63)
 
 [node name="PoorCementary2" parent="NewMap" instance=ExtResource("9_ioo17")]
-transform = Transform3D(-5, 0, 4.371139e-07, 0, 5, 0, -4.371139e-07, 0, -5, -16, 0, 63)
+transform = Transform3D(-5, 0, 4.371139e-07, 0, 5, 0, -4.371139e-07, 0, -5, -21, 0, 63)
+
+[node name="Lightposts" type="Node3D" parent="NewMap"]
+
+[node name="Lightpost" parent="NewMap/Lightposts" instance=ExtResource("10_wse8f")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 16, 0, 21)
+
+[node name="Lightpost4" parent="NewMap/Lightposts" instance=ExtResource("10_wse8f")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -16, 0, 20)
+
+[node name="Lightpost2" parent="NewMap/Lightposts" instance=ExtResource("10_wse8f")]
+transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 37, 0, 5)
+
+[node name="Lightpost3" parent="NewMap/Lightposts" instance=ExtResource("10_wse8f")]
+transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 37, 0, -8)
+
+[node name="Lightpost5" parent="NewMap/Lightposts" instance=ExtResource("10_wse8f")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, -37, 0, -8)
+
+[node name="Lightpost6" parent="NewMap/Lightposts" instance=ExtResource("10_wse8f")]
+transform = Transform3D(-3.496911e-07, 0, 8, 0, 8, 0, -8, 0, -3.496911e-07, -37, 0, 5)
+
+[node name="Lightpost7" parent="NewMap/Lightposts" instance=ExtResource("10_wse8f")]
+transform = Transform3D(-8, 0, -6.993822e-07, 0, 8, 0, 6.993822e-07, 0, -8, 63, 0, 78)
+
+[node name="Lightpost8" parent="NewMap/Lightposts" instance=ExtResource("10_wse8f")]
+transform = Transform3D(-8, 0, -6.993822e-07, 0, 8, 0, 6.993822e-07, 0, -8, -62, 0, 76)
