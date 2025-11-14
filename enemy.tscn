@@ -12,22 +12,19 @@ material = SubResource("StandardMaterial3D_7xaro")
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
 size = Vector3(4.591812, 4.8310547, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qi2p4"]
-size = Vector3(4.599411, 5.0499268, 0.7489011)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
+radius = 1.9174805
+height = 8.544312
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4gyqm"]
 radius = 14.906439
 
 [node name="Enemy" type="CharacterBody3D"]
+floor_max_angle = 1.3089969
 script = ExtResource("1_4gyqm")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 7.987195, 1.6406529, -0.28347015, 0.020599365)
-visible = false
-size = Vector3(14.123524, 6.1196136, 0.46954346)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4.476094, 0, 0, 0, 4.9545655, 0, 0, 0, 0.4560007, 0, 0, 0)
+transform = Transform3D(2.2646914, 0, 0, 0, 4.9545655, 0, 0, 0, 0.4560007, 0, 0, 0)
 mesh = SubResource("BoxMesh_7xaro")
 
 [node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
@@ -41,8 +38,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11362457, 0.05419922, 0)
 shape = SubResource("BoxShape3D_4gyqm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021346748, 0.00991106, -0.0012253523)
-shape = SubResource("BoxShape3D_qi2p4")
+transform = Transform3D(0.5921285, 0, 0, 0, 0.5921285, 0, 0, 0, 0.5921285, -0.04005462, 0.08192913, -0.0012253523)
+shape = SubResource("CapsuleShape3D_4gyqm")
 
 [node name="AggroRange" type="Area3D" parent="." groups=["enemy"]]
 collision_layer = 0
@@ -51,6 +48,15 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AggroRange"]
 shape = SubResource("SphereShape3D_4gyqm")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.5
+avoidance_enabled = true
+radius = 4.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0, 0.3761611, 0.843242, 1)
+debug_path_custom_point_size = 14.56
 
 [connection signal="body_part_hit" from="Area3D" to="." method="_on_area_3d_body_part_hit"]
 [connection signal="area_entered" from="AggroRange" to="." method="_on_aggro_range_area_entered"]

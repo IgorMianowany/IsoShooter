@@ -92,7 +92,8 @@ points = PackedVector3Array(-0.225, 0, -0.07500489, -0.225, 0, 0.07498042, -0.22
 mesh = SubResource("ArrayMesh_d0ceu")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.070907205, 0)
 shape = SubResource("ConvexPolygonShape3D_vsx2d")
 
 [node name="gravestone-bevel" type="MeshInstance3D" parent="."]

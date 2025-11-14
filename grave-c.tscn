@@ -93,6 +93,7 @@ mesh = SubResource("ArrayMesh_d0ceu")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05713725, 0)
 shape = SubResource("ConvexPolygonShape3D_tghg8")
 
 [node name="gravestone-wide" type="MeshInstance3D" parent="."]
