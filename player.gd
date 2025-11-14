@@ -2,10 +2,10 @@ class_name Player
 extends CharacterBody3D
 
 var camera_rotation_speed : float = 200
-var jump_velocity = 15
+var jump_velocity = 30
 var speed : float = 100
 var friction : float = 0.9
-var gravity : float = 100
+var gravity : float = 19
 var move_direction = Vector3()
 
 var bullet := load("res://bullet.tscn")
@@ -108,7 +108,10 @@ func run(delta):
 		move_direction -= camera_basis.x
 	elif Input.is_action_pressed("move_right"):
 		move_direction += camera_basis.x
-	move_direction.y = 0
+	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y += jump_velocity
+	#move_direction.y = 0
 	move_direction = move_direction.normalized()
 	
 	velocity += move_direction * speed * delta
