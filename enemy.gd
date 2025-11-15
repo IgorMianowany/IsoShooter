@@ -9,9 +9,15 @@ var pursue_cooldown : float = 0
 var player : Player
 var next_nav_position : Vector3
 var new_velocity : Vector3
-@export var player_path : NodePath
-@onready var nav_agent = $NavigationAgent3D
 
+@export var player_path : NodePath
+
+@onready var nav_agent = $NavigationAgent3D
+@onready var healthbar = $SubViewport/Healthbar
+
+func _ready() -> void:
+	healthbar.max_value = health
+	healthbar.value = health
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -38,6 +44,7 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_part_hit(damage: Variant) -> void:
 	health -= damage / 10
+	healthbar.value = health
 	if health <= 0:
 		queue_free()
 

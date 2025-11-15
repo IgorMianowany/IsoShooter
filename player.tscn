@@ -14,7 +14,7 @@ albedo_color = Color(1, 0.4, 0, 1)
 material = SubResource("StandardMaterial3D_sh265")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0, 0.64642394, 0.21383226, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_i3pqv"]
 material = SubResource("StandardMaterial3D_onrkg")
