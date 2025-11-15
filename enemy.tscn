@@ -10,7 +10,7 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_7xaro")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
-size = Vector3(4.591812, 4.8310547, 1)
+size = Vector3(5.941532, 4.8310547, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
 radius = 1.9174805
@@ -34,7 +34,7 @@ monitoring = false
 script = ExtResource("1_7k104")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11362457, 0.05419922, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022867203, 0.05419922, 0)
 shape = SubResource("BoxShape3D_4gyqm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

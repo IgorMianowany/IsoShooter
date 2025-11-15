@@ -44,13 +44,13 @@ func _input(event):
 
 func _physics_process(delta):
 	if Input.is_action_pressed("shoot"):
-		if !gun_anim.is_playing():
-			gun_anim.play("shoot")
-			instance = bullet.instantiate()
-			instance.position = gun_barrel.global_position
-			instance.transform.basis = gun_barrel.global_transform.basis
-			get_parent().add_child(instance)
-			
+		if !gun_anim2.is_playing():
+			#gun_anim.play("shoot")
+			#instance = bullet.instantiate()
+			#instance.position = gun_barrel.global_position
+			#instance.transform.basis = gun_barrel.global_transform.basis
+			#get_parent().add_child(instance)
+			#second shoot
 			gun_anim2.play("shoot")
 			instance = bullet.instantiate()
 			instance.position = gun_barrel2.global_position

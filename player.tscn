@@ -95,10 +95,11 @@ process_material = SubResource("ParticleProcessMaterial_onrkg")
 draw_pass_1 = SubResource("SphereMesh_4flbx")
 
 [node name="Rifle" parent="." instance=ExtResource("2_onrkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3422027, 0, -0.7223414)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.130438, 0, -0.35488546)
+visible = false
 
 [node name="Rifle2" parent="." instance=ExtResource("2_onrkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.396862, 0, -0.7223414)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1398013, 0, -0.35488546)
 
 [node name="AggroCollison" type="Area3D" parent="."]
 collision_layer = 8
