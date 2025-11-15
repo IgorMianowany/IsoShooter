@@ -2,11 +2,12 @@ class_name Player
 extends CharacterBody3D
 
 var camera_rotation_speed : float = 200
-var jump_velocity = 30
+var jump_velocity = 50
 var speed : float = 100
 var friction : float = 0.9
-var gravity : float = 19
+var fall_speed : float = 10
 var move_direction = Vector3()
+
 
 var bullet := load("res://bullet.tscn")
 var instance
@@ -61,10 +62,11 @@ func _physics_process(delta):
 	rotate_camera(delta)
 	
 	look_at_cursor()
-	run(delta)
+	move_player(delta)
 	
 	velocity *= friction
-	velocity.y -= gravity * delta
+	if not is_on_floor():
+		velocity += get_gravity() * delta * fall_speed
 	move_and_slide()
 
 
@@ -97,9 +99,11 @@ func look_at_cursor():
 		look_at(cursor_pos, Vector3.UP)
 #
 #
-func run(delta):
+func move_player(delta):
 	move_direction = Vector3()
 	var camera_basis = camera.get_global_transform().basis
+	# for some reason camera basis on Y axis is not 0, not sure why but it makes you fly when moving backwards
+	camera_basis.z.y = 0
 	if Input.is_action_pressed("move_forward"):
 		move_direction -= camera_basis.z
 	elif Input.is_action_pressed("move_back"):
@@ -111,7 +115,6 @@ func run(delta):
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += jump_velocity
-	#move_direction.y = 0
 	move_direction = move_direction.normalized()
 	
 	velocity += move_direction * speed * delta
