@@ -3,7 +3,7 @@ extends Node3D
 
 enum weapons {PISTOL, PISTOL_AKIMBO, RIFLE, RIFLE_AKIMBO, SHOTGUN, SNIPER}
 
-var available_weapons = [weapons.PISTOL, weapons.PISTOL_AKIMBO, weapons.RIFLE]
+var available_weapons = [weapons.PISTOL, weapons.PISTOL_AKIMBO, weapons.RIFLE, weapons.SHOTGUN]
 var is_akimbo : bool = false
 
 @onready var akimbo_weapon : Gun = $Pistol2
@@ -28,4 +28,6 @@ func switch_weapon(to : weapons):
 				akimbo_weapon.visible = true
 			weapons.RIFLE:
 				current_weapon = find_child("Rifle2")
+			weapons.SHOTGUN:
+				current_weapon = find_child("Shotgun")
 		current_weapon.visible = true

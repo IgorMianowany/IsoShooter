@@ -25,7 +25,7 @@ func _ready():
 	cursor.set_as_top_level(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	guns.switch_weapon(guns.weapons.PISTOL)
-	first_weapon = Guns.weapons.RIFLE
+	first_weapon = Guns.weapons.SHOTGUN
 	second_weapon = Guns.weapons.PISTOL
 
 func _physics_process(delta):

@@ -3,6 +3,7 @@ extends Node3D
 
 var speed : float = 40
 var lifetime_timer : Timer = Timer.new()
+var damage : float = 1
 
 @onready var mesh = $MeshInstance3D
 @onready var ray = $RayCast3D
@@ -25,7 +26,7 @@ func _process(_delta: float) -> void:
 		emitter.emitting = true
 		ray.enabled = false
 		if ray.get_collider().is_in_group("enemy"):
-			ray.get_collider().hit()
+			ray.get_collider().hit(damage)
 		await emitter.finished
 		queue_free()
 
