@@ -1,11 +1,17 @@
 class_name Pistol
 extends Gun
 
+var fire_rate : float = .5
+
 @onready var gun_anim : AnimationPlayer = $AnimationPlayer
 @onready var gun_barrel = $RayCast3D
 
+func _process(delta: float) -> void:
+	fire_rate -= delta
+
 func _shoot():
-	if !gun_anim.is_playing():
+	if !gun_anim.is_playing() and fire_rate <= 0:
+		fire_rate = .5
 		gun_anim.play("shoot")
 		instance = bullet.instantiate()
 		player.get_parent().add_child(instance)

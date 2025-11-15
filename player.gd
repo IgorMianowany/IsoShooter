@@ -56,7 +56,7 @@ func _input(event):
 	if event.is_action_released("shoot"):
 		current_emitter.emitting = false
 	if event.is_action("weapon_1"):
-		guns.switch_weapon(guns.weapons.RIFLE)
+		guns.switch_weapon(guns.weapons.PISTOL_AKIMBO)
 	if event.is_action("weapon_2"):
 		guns.switch_weapon(guns.weapons.PISTOL)
 
