@@ -14,10 +14,8 @@ var new_velocity : Vector3
 
 @onready var nav_agent = $NavigationAgent3D
 @onready var healthbar = $SubViewport/Healthbar
-
 func _ready() -> void:
-	healthbar.max_value = health
-	healthbar.value = health
+	healthbar.init_healthbars(health)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -44,7 +42,7 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_part_hit(damage: Variant) -> void:
 	health -= damage / 10
-	healthbar.value = health
+	healthbar.take_damage(health)
 	if health <= 0:
 		queue_free()
 
