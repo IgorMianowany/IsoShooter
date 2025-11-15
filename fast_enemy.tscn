@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk3bvoumic7hy"]
+
+[ext_resource type="PackedScene" uid="uid://vncdxs0e6aws" path="res://enemy.tscn" id="1_qckmv"]
+[ext_resource type="Material" uid="uid://brfmwx7c2p8i4" path="res://materials/cube_green.tres" id="2_epbdy"]
+[ext_resource type="Script" uid="uid://caewvv46wn3qh" path="res://fast_enemy.gd" id="2_y05ou"]
+
+[node name="FastEnemy" instance=ExtResource("1_qckmv")]
+script = ExtResource("2_y05ou")
+
+[node name="MeshInstance3D" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_epbdy")
+
+[node name="NavigationAgent3D" parent="." index="4"]
+path_desired_distance = 5.0
+target_desired_distance = 0.5
+max_speed = 1000.0

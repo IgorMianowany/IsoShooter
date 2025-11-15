@@ -55,6 +55,7 @@ avoidance_enabled = true
 radius = 5.0
 neighbor_distance = 100.0
 max_neighbors = 2
+max_speed = 500.0
 debug_use_custom = true
 debug_path_custom_color = Color(0, 0.3761611, 0.843242, 1)
 debug_path_custom_point_size = 14.56
