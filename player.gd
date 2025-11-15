@@ -7,6 +7,8 @@ var speed : float = 100
 var friction : float = 0.9
 var fall_speed : float = 10
 var move_direction = Vector3()
+var first_weapon : Guns.weapons
+var second_weapon : Guns.weapons
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -23,7 +25,8 @@ func _ready():
 	cursor.set_as_top_level(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	guns.switch_weapon(guns.weapons.PISTOL)
-	
+	first_weapon = Guns.weapons.RIFLE
+	second_weapon = Guns.weapons.PISTOL
 
 func _physics_process(delta):
 	$CanvasLayer/FPS.text = str(Engine.get_frames_per_second())
@@ -56,9 +59,9 @@ func _input(event):
 	if event.is_action_released("shoot"):
 		current_emitter.emitting = false
 	if event.is_action("weapon_1"):
-		guns.switch_weapon(guns.weapons.PISTOL_AKIMBO)
+		guns.switch_weapon(first_weapon)
 	if event.is_action("weapon_2"):
-		guns.switch_weapon(guns.weapons.PISTOL)
+		guns.switch_weapon(second_weapon)
 
 
 func camera_follows_player():
