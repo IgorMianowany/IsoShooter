@@ -8,54 +8,31 @@ var friction : float = 0.9
 var fall_speed : float = 10
 var move_direction = Vector3()
 
-
-var bullet := load("res://bullet.tscn")
-var instance
-
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
 @onready var cursor = $Cursor
 @onready var current_emitter = $MachineGunEmitter
-@onready var gun_anim : AnimationPlayer = $Rifle/SteampunkRifle/AnimationPlayer
-@onready var gun_barrel = $Rifle/RayCast3D
+@onready var guns = $Guns
+
 ## second gun
-@onready var gun_anim2 : AnimationPlayer = $Rifle2/SteampunkRifle/AnimationPlayer
-@onready var gun_barrel2 = $Rifle2/RayCast3D
+@onready var gun_anim2 : AnimationPlayer = $Guns/Rifle2/SteampunkRifle/AnimationPlayer
+@onready var gun_barrel2 = $Guns/Rifle2/RayCast3D
 
 func _ready():
 	camera_rig.set_as_top_level(true)
 	cursor.set_as_top_level(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-
-
-func _input(event):
-	if event.is_action("exit"):
-		get_tree().quit()
-	if event.is_action_pressed("shoot"):
-		current_emitter.restart()
-		current_emitter.emitting = false
-	if event.is_action_released("shoot"):
-		current_emitter.emitting = false
-	if event.is_action("weapon_1"):
-		current_emitter = $MachineGunEmitter
-	if event.is_action("weapon_2"):
-		current_emitter = $ShotgunEmitter
-
+	guns.switch_weapon(guns.weapons.PISTOL)
+	
 
 func _physics_process(delta):
+	$CanvasLayer/FPS.text = str(Engine.get_frames_per_second())
 	if Input.is_action_pressed("shoot"):
-		if !gun_anim2.is_playing():
-			#gun_anim.play("shoot")
-			#instance = bullet.instantiate()
-			#instance.position = gun_barrel.global_position
-			#instance.transform.basis = gun_barrel.global_transform.basis
-			#get_parent().add_child(instance)
-			#second shoot
-			gun_anim2.play("shoot")
-			instance = bullet.instantiate()
-			instance.position = gun_barrel2.global_position
-			instance.transform.basis = gun_barrel2.global_transform.basis
-			get_parent().add_child(instance)
+		#$Guns/Rifle._shoot()
+		#$Guns/Rifle2._shoot()
+		guns.shoot()
+		
+
 			
 	
 	camera_follows_player()
@@ -70,10 +47,23 @@ func _physics_process(delta):
 	move_and_slide()
 
 
+func _input(event):
+	if event.is_action("exit"):
+		get_tree().quit()
+	if event.is_action_pressed("shoot"):
+		current_emitter.restart()
+		current_emitter.emitting = false
+	if event.is_action_released("shoot"):
+		current_emitter.emitting = false
+	if event.is_action("weapon_1"):
+		guns.switch_weapon(guns.weapons.RIFLE)
+	if event.is_action("weapon_2"):
+		guns.switch_weapon(guns.weapons.PISTOL)
+
+
 func camera_follows_player():
 	var player_pos = global_transform.origin
 	camera_rig.global_transform.origin = player_pos
-
 
 func rotate_camera(delta):
 	if Input.is_action_pressed("rotate_camera_clockwise"):
@@ -115,6 +105,7 @@ func move_player(delta):
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += jump_velocity
+
 	move_direction = move_direction.normalized()
 	
 	velocity += move_direction * speed * delta

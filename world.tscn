@@ -399,10 +399,6 @@ transform = Transform3D(-0.2588191, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.258
 [node name="Enemy26" parent="Node3D" instance=ExtResource("1_fj7yv")]
 transform = Transform3D(-0.2588191, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.2588191, 988.5396, 3, -116.92091)
 
-[node name="Player" parent="." instance=ExtResource("1_f3sb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6399364, 1.5000076, 41.092827)
-collision_layer = 1
-
 [node name="NewMap" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="NewMap"]
@@ -1737,3 +1733,6 @@ shape = SubResource("ConcavePolygonShape3D_gggvi")
 
 [node name="FastEnemy" parent="." instance=ExtResource("22_wukud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53, 3.4103718, 58)
+
+[node name="Player" parent="." instance=ExtResource("1_f3sb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5039325, 37)

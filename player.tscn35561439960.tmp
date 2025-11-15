@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvhy6trwsa5bv"]
+[gd_scene load_steps=14 format=3 uid="uid://bvhy6trwsa5bv"]
 
 [ext_resource type="Script" uid="uid://dyi8jls2of8s5" path="res://player.gd" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://da328oy5von23" path="res://guns.gd" id="2_hqtel"]
 [ext_resource type="PackedScene" uid="uid://on5ll4epths2" path="res://rifle.tscn" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://otavqgq0a818" path="res://pistol.tscn" id="3_i3pqv"]
 
@@ -111,7 +110,6 @@ offset_bottom = 23.0
 text = "asdsa"
 
 [node name="Guns" type="Node3D" parent="."]
-script = ExtResource("2_hqtel")
 
 [node name="Rifle" parent="Guns" node_paths=PackedStringArray("player") instance=ExtResource("2_onrkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.130438, 0, -0.35488546)
@@ -120,9 +118,8 @@ player = NodePath("../..")
 
 [node name="Rifle2" parent="Guns" node_paths=PackedStringArray("player") instance=ExtResource("2_onrkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1398013, 0, -0.35488546)
-visible = false
 player = NodePath("../..")
 
-[node name="Pistol" parent="Guns" node_paths=PackedStringArray("player") instance=ExtResource("3_i3pqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3104657, 0, -0.65494496)
-player = NodePath("../..")
+[node name="Pistol" parent="Guns" instance=ExtResource("3_i3pqv")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.2574244, 0, 0)
+visible = false
