@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c86hygka5f1dy"]
+
+[ext_resource type="Script" uid="uid://cvkqodiqaqaha" path="res://upgrade_point.gd" id="1_7mkuj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k1suk"]
+radius = 7.0
+
+[node name="UpgradePoint" type="Node3D"]
+script = ExtResource("1_7mkuj")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_k1suk")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

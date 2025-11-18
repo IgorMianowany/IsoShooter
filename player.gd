@@ -9,12 +9,14 @@ var fall_speed : float = 10
 var move_direction = Vector3()
 var first_weapon : Guns.weapons
 var second_weapon : Guns.weapons
+var can_open_shop : bool = false
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
 @onready var cursor = $Cursor
 @onready var current_emitter = $MachineGunEmitter
 @onready var guns = $Guns
+@onready var ui = $PlayerUI
 
 ## second gun
 @onready var gun_anim2 : AnimationPlayer = $Guns/Rifle2/SteampunkRifle/AnimationPlayer
@@ -62,6 +64,8 @@ func _input(event):
 		guns.switch_weapon(first_weapon)
 	if event.is_action("weapon_2"):
 		guns.switch_weapon(second_weapon)
+	if can_open_shop and event.is_action_pressed("interact"):
+		ui.show_shop()
 
 
 func camera_follows_player():
@@ -113,4 +117,11 @@ func move_player(delta):
 	
 	velocity += move_direction * speed * delta
 
-	
+func on_upgrade_point_entered():
+	ui.show_interact_label()
+	can_open_shop = true
+
+func on_upgrade_point_exited():
+	ui.hide_interact_label()
+	can_open_shop = false
+	ui.hide_shop()

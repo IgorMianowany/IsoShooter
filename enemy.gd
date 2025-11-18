@@ -9,6 +9,7 @@ var pursue_cooldown : float = 0
 var player : Player
 var next_nav_position : Vector3
 var new_velocity : Vector3
+var previous_position : Vector3
 
 @export var player_path : NodePath
 
@@ -16,6 +17,7 @@ var new_velocity : Vector3
 @onready var healthbar = $SubViewport/Healthbar
 func _ready() -> void:
 	healthbar.init_healthbars(health)
+	previous_position = global_position
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -32,7 +34,11 @@ func _physics_process(delta: float) -> void:
 			pursue_cooldown = .5
 
 		velocity = new_velocity
-		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z))
+		# look at player
+		#look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z))
+	#look_at(Vector3(global_position.x+velocity.x, global_position.y, global_position.z + velocity.z))
+	look_at(previous_position + global_position)
+	previous_position = global_position
 		
 	move_and_slide()
 	

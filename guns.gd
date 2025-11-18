@@ -3,11 +3,14 @@ extends Node3D
 
 enum weapons {PISTOL, PISTOL_AKIMBO, RIFLE, RIFLE_AKIMBO, SHOTGUN, SNIPER}
 
-var available_weapons = [weapons.PISTOL, weapons.PISTOL_AKIMBO, weapons.RIFLE, weapons.SHOTGUN]
+var available_weapons = [weapons.PISTOL, weapons.PISTOL_AKIMBO, weapons.RIFLE]
 var is_akimbo : bool = false
 
 @onready var akimbo_weapon : Gun = $Pistol2
 @onready var current_weapon : Gun = $Pistol
+
+func _ready():
+	EventBus.upgrade_selected.connect(handle_upgrade_selected)
 
 func shoot():
 	current_weapon._shoot()
@@ -31,3 +34,6 @@ func switch_weapon(to : weapons):
 			weapons.SHOTGUN:
 				current_weapon = find_child("Shotgun")
 		current_weapon.visible = true
+		
+func handle_upgrade_selected(upgrade_type : Guns.weapons):
+	available_weapons.append(upgrade_type)

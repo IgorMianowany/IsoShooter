@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://v1q6w2gwf23d"]
+
+[ext_resource type="PackedScene" uid="uid://dg3lokfy5g3xp" path="res://upgrade_button.tscn" id="1_viryw"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 300
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 250
+
+[node name="UpgradeButton" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="UpgradeButton2" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="UpgradeButton3" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="UpgradeButton4" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="UpgradeButton5" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 250
+
+[node name="UpgradeButton" parent="CanvasLayer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="UpgradeButton2" parent="CanvasLayer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="UpgradeButton3" parent="CanvasLayer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="UpgradeButton4" parent="CanvasLayer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_viryw")]
+layout_mode = 2
+
+[node name="UpgradeButton5" parent="CanvasLayer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_viryw")]
+layout_mode = 2

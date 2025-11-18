@@ -14,6 +14,7 @@ func _shoot():
 		fire_rate = .5
 		gun_anim.play("shoot")
 		instance = bullet.instantiate()
+		(instance as Bullet).damage = 5
 		player.get_parent().add_child(instance)
 		instance.global_position = gun_barrel.global_position
 		instance.transform.basis = gun_barrel.global_transform.basis

@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://vncdxs0e6aws"]
+[gd_scene load_steps=14 format=3 uid="uid://vncdxs0e6aws"]
 
 [ext_resource type="Script" uid="uid://pp628fuvmygj" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Script" uid="uid://cnwx1e6xll8q7" path="res://body_part.gd" id="1_7k104"]
+[ext_resource type="Material" uid="uid://ccayqqlo57o1p" path="res://materials/enemy_color.tres" id="2_iifgy"]
 [ext_resource type="PackedScene" uid="uid://8xa3y7nfjrpm" path="res://healthbar.tscn" id="3_qi2p4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
-albedo_color = Color(1, 0, 0, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_7xaro"]
-material = SubResource("StandardMaterial3D_7xaro")
+material = ExtResource("2_iifgy")
+
+[sub_resource type="BoxMesh" id="BoxMesh_epg4t"]
+material = ExtResource("2_iifgy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
 size = Vector3(5.941532, 4.8310547, 1)
@@ -23,6 +24,49 @@ radius = 14.906439
 [sub_resource type="ViewportTexture" id="ViewportTexture_qi2p4"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="Animation" id="Animation_iifgy"]
+resource_name = "run"
+length = 0.5
+loop_mode = 1
+step = 0.01
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightArmPivot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.13, 1, 0.383, 0, 0, 0.924, 0.25, 1, 0, 0, 0, 1, 0.37, 1, -0.383, 0, 0, 0.924, 0.5, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArmPivot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.13, 1, -0.383, 0, 0, 0.924, 0.25, 1, 0, 0, 0, 1, 0.37, 1, 0.383, 0, 0, 0.924, 0.5, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_epg4t"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightArmPivot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArmPivot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3yqyl"]
+_data = {
+&"RESET": SubResource("Animation_epg4t"),
+&"run": SubResource("Animation_iifgy")
+}
+
 [node name="Enemy" type="CharacterBody3D"]
 floor_max_angle = 1.3089969
 script = ExtResource("1_4gyqm")
@@ -30,6 +74,22 @@ script = ExtResource("1_4gyqm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.2646914, 0, 0, 0, 4.9545655, 0, 0, 0, 0.4560007, 0, 0, 0)
 mesh = SubResource("BoxMesh_7xaro")
+
+[node name="RightArmPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4354123, 1.2341822, 0)
+
+[node name="RightArm" type="MeshInstance3D" parent="RightArmPivot"]
+transform = Transform3D(0.277, 0, 0, 0, 2.7046957, 0, 0, 0, 0.3, -0.024047494, -1.2788986, 0)
+mesh = SubResource("BoxMesh_epg4t")
+skeleton = NodePath("../..")
+
+[node name="LeftArmPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.435, 1.234, 0)
+
+[node name="LeftArm" type="MeshInstance3D" parent="LeftArmPivot"]
+transform = Transform3D(0.277, 0, 0, 0, 2.7046957, 0, 0, 0, 0.3, 0.02399993, -1.2785503, 0)
+mesh = SubResource("BoxMesh_epg4t")
+skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
 collision_layer = 256
@@ -75,6 +135,13 @@ transparent_bg = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1812353, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_qi2p4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3yqyl")
+}
+autoplay = "run"
+speed_scale = 0.6
 
 [connection signal="body_part_hit" from="Area3D" to="." method="_on_area_3d_body_part_hit"]
 [connection signal="area_entered" from="AggroRange" to="." method="_on_aggro_range_area_entered"]
