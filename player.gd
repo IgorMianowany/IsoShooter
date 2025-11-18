@@ -11,12 +11,15 @@ var first_weapon : Guns.weapons
 var second_weapon : Guns.weapons
 var can_open_shop : bool = false
 
+@onready var pointer_raycast : RayCast3D = $PointerRayCast
+
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
 @onready var cursor = $Cursor
 @onready var current_emitter = $MachineGunEmitter
 @onready var guns = $Guns
 @onready var ui = $PlayerUI
+@onready var laser_pointer = $LaserPointer
 
 ## second gun
 @onready var gun_anim2 : AnimationPlayer = $Guns/Rifle2/SteampunkRifle/AnimationPlayer
@@ -32,13 +35,6 @@ func _ready():
 
 func _physics_process(delta):
 	$CanvasLayer/FPS.text = str(Engine.get_frames_per_second())
-	if Input.is_action_pressed("shoot"):
-		#$Guns/Rifle._shoot()
-		#$Guns/Rifle2._shoot()
-		guns.shoot()
-		
-
-			
 	
 	camera_follows_player()
 	rotate_camera(delta)
@@ -50,6 +46,20 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta * fall_speed
 	move_and_slide()
+	
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("shoot"):
+		#$Guns/Rifle._shoot()
+		#$Guns/Rifle2._shoot()
+		guns.shoot()
+	var laser_collision_point
+	if pointer_raycast.is_colliding():
+		laser_collision_point = pointer_raycast.get_collision_point()
+		var current_length: float = laser_pointer.get_aabb().size.y
+		var factor = global_position.distance_to(laser_collision_point) / current_length
+		laser_pointer.scale *= factor  # uniform scaling
+	#else:
+		## scale laser to max distance
 
 
 func _input(event):

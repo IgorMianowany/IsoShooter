@@ -24,6 +24,23 @@ radius = 14.906439
 [sub_resource type="ViewportTexture" id="ViewportTexture_qi2p4"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="Animation" id="Animation_epg4t"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightArmPivot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftArmPivot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_iifgy"]
 resource_name = "run"
 length = 0.5
@@ -43,23 +60,6 @@ tracks/1/path = NodePath("LeftArmPivot")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.13, 1, -0.383, 0, 0, 0.924, 0.25, 1, 0, 0, 0, 1, 0.37, 1, 0.383, 0, 0, 0.924, 0.5, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_epg4t"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RightArmPivot")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LeftArmPivot")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3yqyl"]
 _data = {

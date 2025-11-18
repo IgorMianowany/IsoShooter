@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvhy6trwsa5bv"]
+[gd_scene load_steps=19 format=3 uid="uid://bvhy6trwsa5bv"]
 
 [ext_resource type="Script" uid="uid://dyi8jls2of8s5" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://da328oy5von23" path="res://guns.gd" id="2_hqtel"]
@@ -48,6 +48,14 @@ collision_bounce = 0.13
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_onrkg"]
 radius = 0.77384794
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hs0m"]
+emission_enabled = true
+emission = Color(0, 0.47690618, 0.17530105, 1)
+emission_energy_multiplier = 106.7
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2hs0m"]
+material = SubResource("StandardMaterial3D_2hs0m")
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 9
@@ -141,3 +149,11 @@ visible = false
 player = NodePath("../..")
 
 [node name="PlayerUI" parent="." instance=ExtResource("6_2hs0m")]
+
+[node name="LaserPointer" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.015, 0, 0, 0, -2.1855695e-07, 0.015, 0, -5, -6.556708e-10, 0, 0, -4.30045)
+mesh = SubResource("CylinderMesh_2hs0m")
+
+[node name="PointerRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9615948)
+target_position = Vector3(0, 0, -35)

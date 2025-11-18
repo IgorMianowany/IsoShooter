@@ -1,7 +1,7 @@
 class_name PlayerUI
 extends Control
 
-var shop := preload("res://shop.tscn")
+var shop_scene := preload("res://shop.tscn")
 
 @onready var interact_label = $CanvasLayer/MarginContainer/Label
 @onready var shop_holder = $ShopHolder
@@ -17,7 +17,7 @@ func hide_interact_label():
 
 func show_shop():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-	shop_holder.add_child(shop.instantiate())
+	shop_holder.add_child(shop_scene.instantiate())
 	
 func hide_shop():
 	var shops = shop_holder.get_children()
