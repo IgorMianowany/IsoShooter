@@ -10,7 +10,8 @@ var player : Player
 var next_nav_position : Vector3
 var new_velocity : Vector3
 var previous_position : Vector3
-
+var look_at_pos = Vector3.ZERO
+var look_toward_pos = Vector3.ZERO
 @export var player_path : NodePath
 
 @onready var nav_agent = $NavigationAgent3D
@@ -28,18 +29,16 @@ func _physics_process(delta: float) -> void:
 		if pursue_cooldown <= 0:
 			nav_agent.set_target_position(player.global_transform.origin)
 			next_nav_position = nav_agent.get_next_path_position()
-			#velocity = global_position.direction_to(next_nav_position) * speed * delta
-			#new_velocity = (next_nav_position - global_position).normalized() * speed * delta
 			new_velocity = velocity.move_toward(next_nav_position - global_position, 10 * delta).normalized() * speed * delta
 			pursue_cooldown = .5
 
 		velocity = new_velocity
+		look_at_pos = global_position + velocity
+		look_toward_pos = look_toward_pos.move_toward(Vector3(look_at_pos.x, global_position.y + 5, look_at_pos.z), delta * 30)
+		if look_toward_pos != global_position:
+			look_at(Vector3(look_toward_pos.x, global_position.y, look_toward_pos.z))
 		# look at player
-		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z))
 		#look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z))
-	#look_at(Vector3(global_position.x+velocity.x, global_position.y, global_position.z + velocity.z))
-	#var look_at_position = global_position.move_toward(next_nav_position, 100 * delta)
-		
 	move_and_slide()
 	
 func _process(delta: float) -> void:

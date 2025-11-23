@@ -44,7 +44,7 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta * fall_speed
 	move_and_slide()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		#$Guns/Rifle._shoot()
 		#$Guns/Rifle2._shoot()
