@@ -35,10 +35,10 @@ func _physics_process(delta: float) -> void:
 
 		velocity = new_velocity
 		# look at player
+		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z))
 		#look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z))
 	#look_at(Vector3(global_position.x+velocity.x, global_position.y, global_position.z + velocity.z))
-	look_at(previous_position + global_position)
-	previous_position = global_position
+	#var look_at_position = global_position.move_toward(next_nav_position, 100 * delta)
 		
 	move_and_slide()
 	
