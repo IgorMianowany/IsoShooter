@@ -35,7 +35,8 @@ func _physics_process(delta: float) -> void:
 		velocity = new_velocity
 		look_at_pos = global_position + velocity
 		look_toward_pos = look_toward_pos.move_toward(Vector3(look_at_pos.x, global_position.y + 5, look_at_pos.z), delta * 30)
-		if look_toward_pos != global_position:
+		# look at movement direction
+		if look_toward_pos.x != global_position.x or look_toward_pos.z != global_position.z:
 			look_at(Vector3(look_toward_pos.x, global_position.y, look_toward_pos.z))
 		# look at player
 		#look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z))
