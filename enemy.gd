@@ -55,7 +55,6 @@ func _process(delta: float) -> void:
 func _on_area_3d_body_part_hit(damage: Variant) -> void:
 	var reaction_roll = randf_range(0,1)
 	if reaction_roll >= .1: #9
-		print(reaction_roll)
 		speed = 0
 		if reaction_roll > .1: #975
 			is_hard_reaction = true
