@@ -1,15 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://vncdxs0e6aws"]
+[gd_scene load_steps=25 format=3 uid="uid://vncdxs0e6aws"]
 
 [ext_resource type="Script" uid="uid://pp628fuvmygj" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Script" uid="uid://cnwx1e6xll8q7" path="res://body_part.gd" id="1_7k104"]
 [ext_resource type="Material" uid="uid://ccayqqlo57o1p" path="res://materials/enemy_color.tres" id="2_iifgy"]
 [ext_resource type="PackedScene" uid="uid://8xa3y7nfjrpm" path="res://healthbar.tscn" id="3_qi2p4"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_7xaro"]
-material = ExtResource("2_iifgy")
-
-[sub_resource type="BoxMesh" id="BoxMesh_epg4t"]
-material = ExtResource("2_iifgy")
+[ext_resource type="PackedScene" uid="uid://bdc6wc78epdki" path="res://Zombie.tscn" id="5_epg4t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4gyqm"]
 size = Vector3(5.941532, 4.8310547, 1)
@@ -29,14 +24,14 @@ length = 0.001
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RightArmPivot")
+tracks/0/path = NodePath("OldMesh/RightArmPivot")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LeftArmPivot")
+tracks/1/path = NodePath("OldMesh/LeftArmPivot")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
@@ -49,14 +44,14 @@ step = 0.01
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RightArmPivot")
+tracks/0/path = NodePath("OldMesh/RightArmPivot")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.13, 1, 0.383, 0, 0, 0.924, 0.25, 1, 0, 0, 0, 1, 0.37, 1, -0.383, 0, 0, 0.924, 0.5, 1, 0, 0, 0, 1)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("LeftArmPivot")
+tracks/1/path = NodePath("OldMesh/LeftArmPivot")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.13, 1, -0.383, 0, 0, 0.924, 0.25, 1, 0, 0, 0, 1, 0.37, 1, 0.383, 0, 0, 0.924, 0.5, 1, 0, 0, 0, 1)
@@ -67,29 +62,56 @@ _data = {
 &"run": SubResource("Animation_iifgy")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_epg4t"]
+animation = &"Zombie_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3yqyl"]
+animation = &"Zombie_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wujgv"]
+animation = &"Zombie_Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hb8ge"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e1ltt"]
+advance_mode = 2
+advance_expression = "not is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dxifv"]
+advance_mode = 2
+advance_expression = "is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pwjut"]
+advance_mode = 2
+advance_expression = "is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n0g06"]
+advance_mode = 2
+advance_expression = "not is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_epg4t"]
+advance_mode = 2
+advance_expression = "is_idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ar8e5"]
+states/Zombie_Attack/node = SubResource("AnimationNodeAnimation_epg4t")
+states/Zombie_Attack/position = Vector2(581, 50)
+states/Zombie_Idle/node = SubResource("AnimationNodeAnimation_3yqyl")
+states/Zombie_Idle/position = Vector2(357, 100)
+states/Zombie_Run/node = SubResource("AnimationNodeAnimation_wujgv")
+states/Zombie_Run/position = Vector2(581, 164)
+transitions = ["Start", "Zombie_Idle", SubResource("AnimationNodeStateMachineTransition_hb8ge"), "Zombie_Idle", "Zombie_Run", SubResource("AnimationNodeStateMachineTransition_e1ltt"), "Zombie_Idle", "Zombie_Attack", SubResource("AnimationNodeStateMachineTransition_dxifv"), "Zombie_Run", "Zombie_Attack", SubResource("AnimationNodeStateMachineTransition_pwjut"), "Zombie_Attack", "Zombie_Run", SubResource("AnimationNodeStateMachineTransition_n0g06"), "Zombie_Run", "Zombie_Idle", SubResource("AnimationNodeStateMachineTransition_epg4t")]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7xaro"]
+material = ExtResource("2_iifgy")
+
+[sub_resource type="BoxMesh" id="BoxMesh_epg4t"]
+material = ExtResource("2_iifgy")
+
 [node name="Enemy" type="CharacterBody3D"]
 floor_max_angle = 1.3089969
 script = ExtResource("1_4gyqm")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.2646914, 0, 0, 0, 4.9545655, 0, 0, 0, 0.4560007, 0, 0, 0)
-mesh = SubResource("BoxMesh_7xaro")
-
-[node name="RightArmPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4354123, 1.2341822, 0)
-
-[node name="RightArm" type="MeshInstance3D" parent="RightArmPivot"]
-transform = Transform3D(0.277, 0, 0, 0, 2.7046957, 0, 0, 0, 0.3, -0.024047494, -1.2788986, 0)
-mesh = SubResource("BoxMesh_epg4t")
-skeleton = NodePath("../..")
-
-[node name="LeftArmPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.435, 1.234, 0)
-
-[node name="LeftArm" type="MeshInstance3D" parent="LeftArmPivot"]
-transform = Transform3D(0.277, 0, 0, 0, 2.7046957, 0, 0, 0, 0.3, 0.02399993, -1.2785503, 0)
-mesh = SubResource("BoxMesh_epg4t")
-skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
 collision_layer = 256
@@ -143,6 +165,88 @@ libraries = {
 autoplay = "run"
 speed_scale = 0.6
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Zombie")
+tree_root = SubResource("AnimationNodeStateMachine_ar8e5")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../Zombie/AnimationPlayer")
+
+[node name="OldMesh" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="OldMesh"]
+transform = Transform3D(2.2646914, 0, 0, 0, 4.9545655, 0, 0, 0, 0.4560007, 0, 0, 0)
+mesh = SubResource("BoxMesh_7xaro")
+skeleton = NodePath("../..")
+
+[node name="RightArmPivot" type="Node3D" parent="OldMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4354123, 1.2341822, 0)
+
+[node name="RightArm" type="MeshInstance3D" parent="OldMesh/RightArmPivot"]
+transform = Transform3D(0.277, 0, 0, 0, 2.7046957, 0, 0, 0, 0.3, -0.024047494, -1.2788986, 0)
+mesh = SubResource("BoxMesh_epg4t")
+skeleton = NodePath("../../..")
+
+[node name="LeftArmPivot" type="Node3D" parent="OldMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.435, 1.234, 0)
+
+[node name="LeftArm" type="MeshInstance3D" parent="OldMesh/LeftArmPivot"]
+transform = Transform3D(0.277, 0, 0, 0, 2.7046957, 0, 0, 0, 0.3, 0.02399993, -1.2785503, 0)
+mesh = SubResource("BoxMesh_epg4t")
+skeleton = NodePath("../../..")
+
+[node name="Zombie" parent="." instance=ExtResource("5_epg4t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4038634, 0)
+
+[node name="Skeleton3D" parent="Zombie/Node" index="0"]
+bones/0/position = Vector3(0.5111123, 91.713104, -1.2246568)
+bones/0/rotation = Quaternion(0.10041866, -0.16395523, -0.013745749, 0.98124707)
+bones/2/rotation = Quaternion(0.02528474, -0.0052522253, 0.015874712, 0.99954045)
+bones/4/rotation = Quaternion(0.0626634, -0.010974095, 0.012270447, 0.99789894)
+bones/6/rotation = Quaternion(0.06299137, -0.010034099, 0.01253898, 0.9978849)
+bones/8/rotation = Quaternion(-0.051432222, 0.02812693, -0.022293463, 0.9980314)
+bones/10/rotation = Quaternion(-0.195972, 0.12198534, -0.035199434, 0.97235566)
+bones/18/rotation = Quaternion(-0.5594786, -0.41826707, 0.61229926, -0.3703052)
+bones/20/rotation = Quaternion(0.3581363, 0.060878634, 0.1907484, 0.911947)
+bones/22/rotation = Quaternion(-5.637313e-07, -1.7204229e-07, 0.67065, 0.74177396)
+bones/24/rotation = Quaternion(-0.23188072, 0.18149588, 0.035993434, 0.9549843)
+bones/26/rotation = Quaternion(-0.034196015, 0.036999382, -0.21633556, 0.97501826)
+bones/28/rotation = Quaternion(0.23125169, -0.005432692, -0.031473123, 0.97236955)
+bones/40/rotation = Quaternion(0.110157914, -0.08884185, 0.079059325, 0.98677355)
+bones/42/rotation = Quaternion(0.17706648, -0.003162293, -0.023784338, 0.9839064)
+bones/46/rotation = Quaternion(-0.14961156, -0.0067626857, -0.10505986, 0.98312414)
+bones/48/rotation = Quaternion(0.21956722, -0.006727583, -0.02909889, 0.9751401)
+bones/52/rotation = Quaternion(0.0022054454, -0.008333928, 0.019447729, 0.9997737)
+bones/54/rotation = Quaternion(0.4517997, -0.010356234, -0.057796746, 0.890185)
+bones/58/rotation = Quaternion(0.60938066, -0.39556095, 0.5566678, 0.40287435)
+bones/60/rotation = Quaternion(0.4169388, 0.013556028, -0.2106244, 0.88409024)
+bones/62/rotation = Quaternion(-6.8906985e-07, -4.1367187e-08, -0.69630355, 0.7177475)
+bones/64/rotation = Quaternion(0.026600407, -0.21597928, -0.062377688, 0.97404027)
+bones/66/rotation = Quaternion(0.035254896, -0.057938483, -0.4301408, 0.9002107)
+bones/68/rotation = Quaternion(-0.032554638, 0.058352184, 0.3921151, 0.91748625)
+bones/70/rotation = Quaternion(-0.012450945, 0.009107393, -0.22187892, 0.9749522)
+bones/74/rotation = Quaternion(-0.18143103, -0.00910993, 0.031401537, 0.98285997)
+bones/76/rotation = Quaternion(0.37831032, 0.003068987, 0.050271183, 0.9243077)
+bones/80/rotation = Quaternion(-0.126457, 0.0029644787, 0.027578719, 0.99158424)
+bones/82/rotation = Quaternion(0.49633285, 0.009749159, 0.062046878, 0.8658573)
+bones/86/rotation = Quaternion(0.13474414, 0.011204249, 0.06922697, 0.98839575)
+bones/88/rotation = Quaternion(0.05748444, 0.006728118, 0.008322265, 0.99828905)
+bones/92/rotation = Quaternion(0.24984218, 0.01757694, 0.086103864, 0.96429044)
+bones/94/rotation = Quaternion(0.4658969, 0.0051884227, 0.062328037, 0.8826258)
+bones/98/rotation = Quaternion(0.12197859, 0.4545274, 0.860537, -0.19494201)
+bones/100/rotation = Quaternion(-0.48105276, -0.063758515, 0.039502427, 0.87347734)
+bones/102/rotation = Quaternion(0.5055203, -0.13604209, -0.061121993, 0.84982705)
+bones/104/rotation = Quaternion(0.3035014, -0.052742027, -0.012154378, 0.9512926)
+bones/108/rotation = Quaternion(-0.11813469, 0.3997023, 0.90012866, 0.12669118)
+bones/110/rotation = Quaternion(-0.47440794, 0.074199006, -0.0401538, 0.876253)
+bones/112/rotation = Quaternion(0.5388586, 0.13516968, 0.053990696, 0.8297263)
+bones/114/rotation = Quaternion(0.30969232, 0.0508315, 0.011227844, 0.94941074)
+
+[node name="OLD" parent="Zombie" index="2"]
+visible = false
+
 [connection signal="body_part_hit" from="Area3D" to="." method="_on_area_3d_body_part_hit"]
 [connection signal="area_entered" from="AggroRange" to="." method="_on_aggro_range_area_entered"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+
+[editable path="Zombie"]

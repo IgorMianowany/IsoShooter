@@ -12,10 +12,14 @@ var new_velocity : Vector3
 var previous_position : Vector3
 var look_at_pos = Vector3.ZERO
 var look_toward_pos = Vector3.ZERO
+var is_attacking : bool = false
+var is_idle : bool = true
+
 @export var player_path : NodePath
 
 @onready var nav_agent = $NavigationAgent3D
 @onready var healthbar = $SubViewport/Healthbar
+
 func _ready() -> void:
 	healthbar.init_healthbars(health)
 	previous_position = global_position
@@ -55,6 +59,7 @@ func _on_area_3d_body_part_hit(damage: Variant) -> void:
 
 func _on_aggro_range_area_entered(area: Area3D) -> void:
 	player = area.get_parent()
+	is_idle = false
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
