@@ -304,7 +304,7 @@ shape = SubResource("ConcavePolygonShape3D_fj7yv")
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="EnemySpawn" parent="Enemies" instance=ExtResource("1_il2jm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4, 56)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1, 56)
 
 [node name="NewMap" type="Node3D" parent="."]
 

@@ -14,6 +14,8 @@ var look_at_pos = Vector3.ZERO
 var look_toward_pos = Vector3.ZERO
 var is_attacking : bool = false
 var is_idle : bool = true
+var is_reaction : bool = false
+var is_hard_reaction : bool = false
 
 @export var player_path : NodePath
 
@@ -51,7 +53,15 @@ func _process(delta: float) -> void:
 
 
 func _on_area_3d_body_part_hit(damage: Variant) -> void:
-	health -= damage / 10
+	var reaction_roll = randf_range(0,1)
+	if reaction_roll >= .1: #9
+		print(reaction_roll)
+		speed = 0
+		if reaction_roll > .1: #975
+			is_hard_reaction = true
+		else:
+			is_reaction = true 
+	health -= damage / 100
 	healthbar.take_damage(health)
 	if health <= 0:
 		queue_free()
@@ -64,3 +74,9 @@ func _on_aggro_range_area_entered(area: Area3D) -> void:
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name.contains("Reaction"):
+		speed = 500
+		is_reaction = false
+		is_hard_reaction = false
