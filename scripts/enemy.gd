@@ -20,7 +20,7 @@ var is_hard_reaction : bool = false
 
 @export var player_path : NodePath
 
-@onready var nav_agent = $NavigationAgent3D
+@onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
 @onready var healthbar = $SubViewport/Healthbar
 
 func _ready() -> void:
@@ -53,7 +53,6 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	pursue_cooldown -= delta
 
-
 func _on_area_3d_body_part_hit(damage: Variant) -> void:
 	var reaction_roll = randf_range(0,1)
 	if reaction_roll >= .9:
@@ -72,6 +71,7 @@ func _on_area_3d_body_part_hit(damage: Variant) -> void:
 func _on_aggro_range_area_entered(area: Area3D) -> void:
 	player = area.get_parent()
 	is_idle = false
+	print("cos")
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
