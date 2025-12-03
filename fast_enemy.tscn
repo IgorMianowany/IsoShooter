@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://vncdxs0e6aws" path="res://enemy.tscn" id="1_qckmv"]
 [ext_resource type="Material" uid="uid://brfmwx7c2p8i4" path="res://materials/cube_green.tres" id="2_epbdy"]
-[ext_resource type="Script" uid="uid://caewvv46wn3qh" path="res://fast_enemy.gd" id="2_y05ou"]
+[ext_resource type="Script" uid="uid://c8gk2oexr45rf" path="res://scripts/fast_enemy.gd" id="2_y05ou"]
 
 [node name="FastEnemy" instance=ExtResource("1_qckmv")]
 script = ExtResource("2_y05ou")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dg3lokfy5g3xp"]
 
 [ext_resource type="Texture2D" uid="uid://cbtisbkqmshlv" path="res://icon.svg" id="1_feo8w"]
-[ext_resource type="Script" uid="uid://cbm34p7winuul" path="res://upgrade_button.gd" id="1_gwg2v"]
+[ext_resource type="Script" uid="uid://dw3chy4tppv6w" path="res://scripts/upgrade_button.gd" id="1_gwg2v"]
 
 [node name="UpgradeButton" type="Control"]
 layout_mode = 3

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://otavqgq0a818"]
 
-[ext_resource type="Script" uid="uid://vvw0g3j7vtyl" path="res://pistol.gd" id="1_08c3m"]
+[ext_resource type="Script" uid="uid://dojg44e2otkel" path="res://scripts/pistol.gd" id="1_08c3m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cd8h8"]
 resource_name = "Black_Pistol02"

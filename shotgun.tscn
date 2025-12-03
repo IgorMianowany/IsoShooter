@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://dnrm4g4v6mnrg"]
 
-[ext_resource type="Script" uid="uid://b323qc4ewop7p" path="res://shotgun.gd" id="1_5bb75"]
+[ext_resource type="Script" uid="uid://dipvbdulyiag1" path="res://scripts/shotgun.gd" id="1_5bb75"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hn68x"]
 load_path = "res://.godot/imported/Shotgun_Zombie_Atlas.png-04a6c00a58e8810485e0b6f1c06efab3.s3tc.ctex"

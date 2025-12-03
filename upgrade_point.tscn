@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c86hygka5f1dy"]
 
-[ext_resource type="Script" uid="uid://cvkqodiqaqaha" path="res://upgrade_point.gd" id="1_7mkuj"]
+[ext_resource type="Script" uid="uid://dkq7trmmxmqfd" path="res://scripts/upgrade_point.gd" id="1_7mkuj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k1suk"]
 radius = 7.0

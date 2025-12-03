@@ -42,7 +42,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
-EventBus="*res://event_bus.gd"
+EventBus="*res://scripts/event_bus.gd"
 
 [display]
 
