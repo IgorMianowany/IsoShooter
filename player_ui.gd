@@ -8,6 +8,7 @@ var shop_scene := preload("res://shop.tscn")
 
 func _ready() -> void:
 	interact_label.text = "Press 'e' to open shop"
+	EventBus.enemy_spawned.connect(update_enemy_count)
 
 func show_interact_label():
 	interact_label.visible = true
@@ -24,7 +25,10 @@ func hide_shop():
 	for shop in shops:
 		shop.queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
+func update_enemy_count():
+	$CanvasLayer/EnemyCount.text = str(EventBus.enemy_count)
 		
 		
-		
+
 	

@@ -6,6 +6,7 @@ var speed : float = 500
 const JUMP_VELOCITY = 4.5
 var health = 10
 var pursue_cooldown : float = 0
+var pursue_cooldown_max : float = 1
 var player : Player
 var next_nav_position : Vector3
 var new_velocity : Vector3
@@ -25,6 +26,7 @@ var is_hard_reaction : bool = false
 func _ready() -> void:
 	healthbar.init_healthbars(health)
 	previous_position = global_position
+	nav_agent.avoidance_priority = 1 - randf_range(0, 0.4)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -36,7 +38,7 @@ func _physics_process(delta: float) -> void:
 			nav_agent.set_target_position(player.global_transform.origin)
 			next_nav_position = nav_agent.get_next_path_position()
 			new_velocity = velocity.move_toward(next_nav_position - global_position, 10 * delta).normalized() * speed * delta
-			pursue_cooldown = .5
+			pursue_cooldown = pursue_cooldown_max
 
 		velocity = new_velocity
 		look_at_pos = global_position + velocity
@@ -54,15 +56,16 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_part_hit(damage: Variant) -> void:
 	var reaction_roll = randf_range(0,1)
-	if reaction_roll >= .1: #9
+	if reaction_roll >= .9:
 		speed = 0
-		if reaction_roll > .1: #975
+		if reaction_roll > .975: 
 			is_hard_reaction = true
 		else:
 			is_reaction = true 
-	health -= damage / 100
+	health -= damage / 10
 	healthbar.take_damage(health)
 	if health <= 0:
+		EventBus.enemy_count -= 1
 		queue_free()
 
 

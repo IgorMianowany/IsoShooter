@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dha3djdvyek45"]
+
+[ext_resource type="Script" uid="uid://nyc0rik15ix6" path="res://possible_spawn_position.gd" id="1_bedcj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wbhwl"]
+
+[node name="PossibleSpawnPosition" type="Node3D"]
+script = ExtResource("1_bedcj")
+
+[node name="Spawn" type="Area3D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawn"]
+shape = SubResource("SphereShape3D_wbhwl")
+
+[connection signal="body_entered" from="Spawn" to="." method="_on_spawn_body_entered"]
+[connection signal="body_exited" from="Spawn" to="." method="_on_spawn_body_exited"]

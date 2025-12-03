@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0ksmwiagyh04"]
+[gd_scene load_steps=3 format=3 uid="uid://b0ksmwiagyh04"]
 
 [ext_resource type="Script" uid="uid://bjt6p23kbhru5" path="res://enemy_spawn.gd" id="1_y15wn"]
+[ext_resource type="PackedScene" uid="uid://dha3djdvyek45" path="res://possible_spawn_position.tscn" id="2_mj4pd"]
 
 [node name="EnemySpawn" type="Node3D"]
 script = ExtResource("1_y15wn")
@@ -8,5 +9,21 @@ script = ExtResource("1_y15wn")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="PossibleSpawns" type="Node3D" parent="."]
+
+[node name="PossibleSpawnPosition" parent="PossibleSpawns" instance=ExtResource("2_mj4pd")]
+
+[node name="PossibleSpawnPosition3" parent="PossibleSpawns" instance=ExtResource("2_mj4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="PossibleSpawnPosition4" parent="PossibleSpawns" instance=ExtResource("2_mj4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="PossibleSpawnPosition5" parent="PossibleSpawns" instance=ExtResource("2_mj4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="PossibleSpawnPosition2" parent="PossibleSpawns" instance=ExtResource("2_mj4pd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -3,10 +3,16 @@ extends Node3D
 
 var enemy_scene := preload("res://enemy.tscn")
 
+@onready var possible_spawns = $PossibleSpawns
+
 func spawn_enemy():
-	var enemy : Enemy = enemy_scene.instantiate()
-	get_parent().add_child(enemy)
-	enemy.global_position = global_position
+	for child in possible_spawns.get_children():
+		if child.entity_counter == 0 and EventBus.enemy_count < 10:
+			var enemy : Enemy = enemy_scene.instantiate()
+			get_parent().add_child(enemy)
+			enemy.global_position = child.global_position
+			EventBus.enemy_spawned.emit()
+			return
 
 
 func _on_timer_timeout() -> void:

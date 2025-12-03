@@ -306,6 +306,84 @@ shape = SubResource("ConcavePolygonShape3D_fj7yv")
 [node name="EnemySpawn" parent="Enemies" instance=ExtResource("1_il2jm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1, 56)
 
+[node name="EnemySpawn2" parent="Enemies" instance=ExtResource("1_il2jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 19)
+
+[node name="EnemySpawn3" parent="Enemies" instance=ExtResource("1_il2jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 1, -7)
+
+[node name="EnemySpawn4" parent="Enemies" instance=ExtResource("1_il2jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.665379, 1, -39.891838)
+
+[node name="EnemySpawn5" parent="Enemies" instance=ExtResource("1_il2jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 0, 0)
+
+[node name="EnemySpawn6" parent="Enemies" instance=ExtResource("1_il2jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 60)
+
+[node name="EnemySpawn7" parent="Enemies" instance=ExtResource("1_il2jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 2, 37)
+
+[node name="EnemySpawn8" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 2, 73)
+
+[node name="EnemySpawn9" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 2, 82)
+
+[node name="EnemySpawn10" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 83)
+
+[node name="EnemySpawn11" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, 85)
+
+[node name="EnemySpawn12" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 13, 85)
+
+[node name="EnemySpawn13" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 1.0039334, 42)
+
+[node name="EnemySpawn14" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 1.0039334, 6)
+
+[node name="EnemySpawn15" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 1.0039334, 17)
+
+[node name="EnemySpawn16" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1.0039334, -12)
+
+[node name="EnemySpawn17" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 1.0039334, -46)
+
+[node name="EnemySpawn18" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49, 1.0039334, -52)
+
+[node name="EnemySpawn19" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 1.0039334, -63)
+
+[node name="EnemySpawn20" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 1.0039334, -26)
+
+[node name="EnemySpawn21" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1.0039334, -8)
+
+[node name="EnemySpawn22" parent="Enemies" instance=ExtResource("1_il2jm")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 1.0039334, 44)
+
 [node name="NewMap" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="NewMap"]
