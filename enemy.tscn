@@ -117,8 +117,8 @@ monitorable = false
 shape = SubResource("SphereShape3D_4gyqm")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 2.0
-target_desired_distance = 5.0
+path_desired_distance = 2.5
+target_desired_distance = 6.0
 radius = 5.0
 neighbor_distance = 25.0
 max_neighbors = 2
@@ -148,8 +148,8 @@ anim_player = NodePath("../Zombie/AnimationPlayer")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4038634, 0)
 
 [node name="Skeleton3D" parent="Zombie/Node" index="0"]
-bones/0/position = Vector3(5.8207626, 89.75738, 3.7781813)
-bones/0/rotation = Quaternion(0.09680701, -0.20345537, -0.0062136347, 0.97426677)
+bones/0/position = Vector3(0.28110987, 91.11991, -0.55042076)
+bones/0/rotation = Quaternion(0.10185467, -0.16659696, 0.000820473, 0.98075)
 bones/0/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -162,7 +162,7 @@ bones/0/bone_meta/extras = {
 "translation": [-0.03019968047738075, 103.25531005859376, 0.4103772342205049]
 }
 }
-bones/2/rotation = Quaternion(0.030387485, -0.005729374, 0.009709812, 0.99947464)
+bones/2/rotation = Quaternion(0.03237035, -0.0033494418, 0.008131238, 0.9994373)
 bones/2/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -176,7 +176,7 @@ bones/2/bone_meta/extras = {
 "translation": [-0.00242632956705655, 12.777534488862244, 0.31525161892363407]
 }
 }
-bones/4/rotation = Quaternion(0.06393676, -0.007825767, 0.013290574, 0.9978348)
+bones/4/rotation = Quaternion(0.06843794, -0.00387484, 0.0044704243, 0.99763787)
 bones/4/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -190,7 +190,7 @@ bones/4/bone_meta/extras = {
 "translation": [-4.8572257327350605e-17, 8.792659, -5.621125787058643e-10]
 }
 }
-bones/6/rotation = Quaternion(0.06433153, -0.0072835316, 0.012715047, 0.99782103)
+bones/6/rotation = Quaternion(0.0687249, -0.0034217082, 0.0037208837, 0.9976229)
 bones/6/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -203,7 +203,7 @@ bones/6/bone_meta/extras = {
 "translation": [5.5511150000000004e-17, 8.651117324829045, -3.2164738e-10]
 }
 }
-bones/8/rotation = Quaternion(-0.050098304, 0.033652186, -0.021242011, 0.9979512)
+bones/8/rotation = Quaternion(-0.05882258, 0.030873872, -0.02337048, 0.9975173)
 bones/8/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -215,7 +215,7 @@ bones/8/bone_meta/extras = {
 "translation": [-4.8572257327350605e-17, 21.24246851425957, -0.8425337613313468]
 }
 }
-bones/10/rotation = Quaternion(-0.21528798, 0.14926729, -0.024339374, 0.9647684)
+bones/10/rotation = Quaternion(-0.20177911, 0.13068323, -0.0205404, 0.97045624)
 bones/10/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -260,7 +260,7 @@ bones/16/bone_meta/extras = {
 "translation": [-11.492393, 16.415084063241636, 16.446441183596182]
 }
 }
-bones/18/rotation = Quaternion(-0.55789, -0.42030373, 0.61075115, -0.37294307)
+bones/18/rotation = Quaternion(-0.5565536, -0.41776738, 0.6180754, -0.36565208)
 bones/18/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -273,8 +273,8 @@ bones/18/bone_meta/extras = {
 "translation": [6.5702286, 17.595630234142646, -2.761763703970874]
 }
 }
-bones/20/rotation = Quaternion(0.35014957, 0.050334565, 0.20175815, 0.9133211)
-bones/22/rotation = Quaternion(-8.426613e-08, 5.7960698e-08, 0.64484894, 0.7643101)
+bones/20/rotation = Quaternion(0.34864047, 0.032525644, 0.20290668, 0.91445106)
+bones/22/rotation = Quaternion(6.5048766e-08, -5.262991e-08, 0.6530114, 0.7573482)
 bones/22/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -287,7 +287,7 @@ bones/22/bone_meta/extras = {
 "translation": [-2.7190739e-10, 18.469623565673785, 3.9790393e-13]
 }
 }
-bones/24/rotation = Quaternion(-0.17692044, 0.16427295, -0.00019292018, 0.97041935)
+bones/24/rotation = Quaternion(-0.1812523, 0.1566419, -0.030272085, 0.9704095)
 bones/26/rotation = Quaternion(0.22583862, 0.008272602, -0.06215275, 0.9721448)
 bones/28/rotation = Quaternion(0.23787804, 0.0083922865, 0.0062161987, 0.97123885)
 bones/30/bone_meta/extras = {
@@ -386,7 +386,7 @@ bones/50/bone_meta/extras = {
 }
 bones/52/rotation = Quaternion(0.23017606, 2.222601e-06, -0.027745409, 0.9727534)
 bones/54/rotation = Quaternion(0.23383915, 1.9247109e-07, -0.028196968, 0.9718663)
-bones/58/rotation = Quaternion(0.6180396, -0.3882584, 0.55592906, 0.39777565)
+bones/58/rotation = Quaternion(0.61002296, -0.39639038, 0.55278504, 0.4064178)
 bones/58/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -400,9 +400,9 @@ bones/58/bone_meta/extras = {
 "translation": [-6.570233, 17.595807591592944, -2.7617678751737635]
 }
 }
-bones/60/rotation = Quaternion(0.4417911, 0.012872834, -0.20607665, 0.8730334)
-bones/62/rotation = Quaternion(-5.1713385e-09, 4.560974e-10, -0.7201067, 0.6938634)
-bones/64/rotation = Quaternion(-0.028505579, -0.18212898, 0.058494776, 0.98111916)
+bones/60/rotation = Quaternion(0.42215335, 0.008182642, -0.23027188, 0.8767523)
+bones/62/rotation = Quaternion(9.9483664e-08, 7.158924e-08, -0.7131397, 0.7010221)
+bones/64/rotation = Quaternion(-0.023789972, -0.22145168, 0.049107265, 0.97364354)
 bones/66/rotation = Quaternion(0.17015848, -0.08116974, -0.3552684, 0.9155556)
 bones/66/bone_meta/extras = {
 "transformData": {
@@ -531,10 +531,10 @@ bones/92/bone_meta/extras = {
 }
 }
 bones/94/rotation = Quaternion(0.23364179, -4.3088022e-08, 0.028452529, 0.97190636)
-bones/98/rotation = Quaternion(0.1358907, 0.48654458, 0.8416135, -0.19103628)
-bones/100/rotation = Quaternion(-0.5246593, -0.07596446, 0.027023653, 0.84748554)
-bones/102/rotation = Quaternion(0.5216268, -0.114708275, -0.011744426, 0.84534585)
-bones/104/rotation = Quaternion(0.29982468, -0.0519697, -0.0121272905, 0.9525005)
+bones/98/rotation = Quaternion(0.1313721, 0.46554685, 0.8536718, -0.19300812)
+bones/100/rotation = Quaternion(-0.43517083, -0.062265962, 0.021928065, 0.89792454)
+bones/102/rotation = Quaternion(0.45564032, -0.11800211, -0.025543047, 0.88193816)
+bones/104/rotation = Quaternion(0.29995173, -0.05199637, -0.0121282665, 0.9524591)
 bones/104/bone_meta/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -560,9 +560,9 @@ bones/106/bone_meta/extras = {
 "translation": [4.121148e-13, 23.512253140540356, 4.2470107e-12]
 }
 }
-bones/108/rotation = Quaternion(-0.12191121, 0.44333956, 0.87525034, 0.15008228)
-bones/110/rotation = Quaternion(-0.47739643, 0.03344648, -0.019440185, 0.877836)
-bones/112/rotation = Quaternion(0.5143, 0.12785698, 0.041857313, 0.84699243)
+bones/108/rotation = Quaternion(-0.12890159, 0.45001954, 0.8733456, 0.13466386)
+bones/110/rotation = Quaternion(-0.49025708, 0.06959986, -0.012501436, 0.86870456)
+bones/112/rotation = Quaternion(0.53410375, 0.11130295, 0.0067377607, 0.8380331)
 bones/114/rotation = Quaternion(0.2998403, 0.051972866, 0.012129722, 0.95249546)
 
 [node name="Skeleton3D" parent="Zombie/OLD" index="0"]
