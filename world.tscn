@@ -37,10 +37,14 @@ ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.34380147, 0.6231994, 0.40712047, 1)
+fog_density = 2.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.06
-volumetric_fog_albedo = Color(0.49226552, 0.10700958, 0.07082244, 1)
-volumetric_fog_emission = Color(0.25839838, 0.13041401, 0.0720902, 1)
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(9.866804e-07, 0.40685922, 0.10649545, 1)
+volumetric_fog_emission = Color(0, 0.20939928, 0.08601051, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wse8f"]
 emission_enabled = true
