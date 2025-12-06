@@ -126,6 +126,7 @@ func on_upgrade_point_exited():
 	can_open_shop = false
 	ui.hide_shop()
 	
-func take_damage(damage: float):
+func take_damage(damage: float, origin: Vector3):
+	take_damage_emitter.look_at(origin)
 	health -= damage
 	take_damage_emitter.emitting = true
