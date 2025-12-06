@@ -18,6 +18,7 @@ var health : float = 100
 @onready var current_emitter = $MachineGunEmitter
 @onready var guns = $Guns
 @onready var ui = $PlayerUI
+@onready var take_damage_emitter : GPUParticles3D = $TakeDamageEmitter
 
 ## second gun
 @onready var gun_anim2 : AnimationPlayer = $Guns/Rifle2/SteampunkRifle/AnimationPlayer
@@ -127,4 +128,4 @@ func on_upgrade_point_exited():
 	
 func take_damage(damage: float):
 	health -= damage
-		
+	take_damage_emitter.emitting = true

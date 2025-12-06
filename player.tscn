@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvhy6trwsa5bv"]
+[gd_scene load_steps=23 format=3 uid="uid://bvhy6trwsa5bv"]
 
 [ext_resource type="Script" uid="uid://c5tpcy814gmg2" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://co4rwim7dwlor" path="res://scripts/guns.gd" id="2_hqtel"]
@@ -53,6 +53,19 @@ radius = 0.77384794
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1jxqw"]
 radius = 2.402123
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dw050"]
+spread = 5.0
+initial_velocity_min = 22.439999
+initial_velocity_max = 22.439999
+gravity = Vector3(0, -40, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dw050"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b26j0"]
+material = SubResource("StandardMaterial3D_dw050")
+size = Vector3(0.4, 0.1, 0.1)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 9
@@ -142,6 +155,7 @@ player = NodePath("../..")
 
 [node name="Shotgun" parent="Guns" node_paths=PackedStringArray("player") instance=ExtResource("5_sweqy")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.2906071, 0.12200308, -0.11219561)
+visible = false
 player = NodePath("../..")
 
 [node name="PlayerUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_2hs0m")]
@@ -158,5 +172,15 @@ script = ExtResource("8_dw050")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("SphereShape3D_1jxqw")
+
+[node name="TakeDamageEmitter" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.74779207, 0.91043663, -0.99003625)
+emitting = false
+amount = 15
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_dw050")
+draw_pass_1 = SubResource("BoxMesh_b26j0")
 
 [connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
