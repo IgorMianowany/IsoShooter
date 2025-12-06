@@ -127,6 +127,12 @@ func on_upgrade_point_exited():
 	ui.hide_shop()
 	
 func take_damage(damage: float, origin: Vector3):
-	take_damage_emitter.look_at(origin)
 	health -= damage
-	take_damage_emitter.emitting = true
+#	take_damage_emitter.look_at(origin)
+#	take_damage_emitter.emitting = true
+	var new_emitter: GPUParticles3D = take_damage_emitter.duplicate()
+	add_child(new_emitter)
+	new_emitter.look_at(origin)
+	new_emitter.emitting = true
+	await(new_emitter.finished)
+	new_emitter.queue_free()
