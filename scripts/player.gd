@@ -11,6 +11,7 @@ var first_weapon : Guns.weapons
 var second_weapon : Guns.weapons
 var can_open_shop : bool = false
 var health : float = 100
+var max_health : float = 100
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig

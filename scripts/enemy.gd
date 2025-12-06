@@ -80,7 +80,7 @@ func _on_area_3d_body_part_hit(damage: Variant) -> void:
 	health -= damage / 10
 	healthbar.take_damage(health)
 	if health <= 0:
-		EventBus.enemy_count -= 1
+		EventBus.enemy_died.emit()
 		queue_free()
 
 

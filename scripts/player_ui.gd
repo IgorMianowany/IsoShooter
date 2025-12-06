@@ -7,13 +7,15 @@ var shop_scene := preload("res://shop.tscn")
 
 @onready var interact_label = $CanvasLayer/MarginContainer/Label
 @onready var shop_holder = $ShopHolder
+@onready var health = $CanvasLayer/MarginContainer2/Health
 
 func _ready() -> void:
 	interact_label.text = "Press 'e' to open shop"
 	EventBus.enemy_spawned.connect(update_enemy_count)
+	EventBus.enemy_died.connect(update_enemy_count)
 	
 func _process(_delta: float) -> void:
-	$CanvasLayer/Health.text = str(player.health)
+	health.text = str(int(player.health)) + "/" + str(int(player.max_health))
 
 func show_interact_label():
 	interact_label.visible = true
@@ -32,7 +34,7 @@ func hide_shop():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 func update_enemy_count():
-	$CanvasLayer/EnemyCount.text = str(EventBus.enemy_count)
+	$CanvasLayer/EnemyCount.text = "Enemy count: " + str(EventBus.enemy_count)
 		
 		
 
