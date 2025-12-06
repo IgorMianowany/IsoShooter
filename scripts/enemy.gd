@@ -11,25 +11,30 @@ var player : Player
 var next_nav_position : Vector3
 var new_velocity : Vector3
 var previous_position : Vector3
-var look_at_pos = Vector3.ZERO
-var look_toward_pos = Vector3.ZERO
+var look_at_pos: Vector3 = Vector3.ZERO
+var look_toward_pos: Vector3 = Vector3.ZERO
 var is_attacking : bool = false
 var is_idle : bool = true
 var is_reaction : bool = false
 var is_hard_reaction : bool = false
 var update_frame_offset : int =  0
-var frames_since_update : int = 0
+var frames_since_update : int = 60
+var speed_modifier : float = 1
 
 @export var player_path : NodePath
 
 @onready var nav_agent : NavigationAgent3D = $NavigationAgent3D
 @onready var healthbar = $SubViewport/Healthbar
+@onready var attack_hitbox : Area3D = $Hitbox
+@onready var mesh : ZombieAnimManager = $Zombie
 
 func _ready() -> void:
 	healthbar.init_healthbars(health)
 	previous_position = global_position
 	nav_agent.avoidance_priority = 1 - randf_range(0, 0.4)
 	pursue_cooldown_max += randf_range(0,.25)
+	mesh.attack_start.connect(attack_started)
+	mesh.attack_end.connect(attack_ended)
 
 func _physics_process(delta: float) -> void:
 	frames_since_update += 1
@@ -42,14 +47,14 @@ func _physics_process(delta: float) -> void:
 		if pursue_cooldown <= 0:
 			nav_agent.set_target_position(player.global_transform.origin)
 			next_nav_position = nav_agent.get_next_path_position()
-			new_velocity = velocity.move_toward(next_nav_position - global_position, 10 * delta).normalized() * speed * delta
+			new_velocity = velocity.move_toward(next_nav_position - global_position, 10 * delta).normalized() * (speed * speed_modifier) * delta
 			pursue_cooldown = pursue_cooldown_max
 
 		velocity = new_velocity
 		look_at_pos = global_position + velocity
 		# look at movement direction
 
-		# look at player
+		# look at players
 		#look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z))
 	look_toward_pos = look_toward_pos.move_toward(Vector3(look_at_pos.x, global_position.y + 5, look_at_pos.z), delta * 30)
 	if look_toward_pos.x != global_position.x or look_toward_pos.z != global_position.z:
@@ -86,3 +91,17 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		speed = 500
 		is_reaction = false
 		is_hard_reaction = false
+	if anim_name.contains("Attack"):
+		is_attacking = false
+		speed_modifier = 1
+		
+func _on_navigation_agent_3d_target_reached() -> void:
+	if not is_attacking:
+		is_attacking = true
+		speed_modifier = 0
+		
+func attack_started():
+	attack_hitbox.monitorable = true
+
+func attack_ended():
+	attack_hitbox.monitorable = false

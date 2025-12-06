@@ -3,12 +3,17 @@ extends Control
 
 var shop_scene := preload("res://shop.tscn")
 
+@export var player : Player
+
 @onready var interact_label = $CanvasLayer/MarginContainer/Label
 @onready var shop_holder = $ShopHolder
 
 func _ready() -> void:
 	interact_label.text = "Press 'e' to open shop"
 	EventBus.enemy_spawned.connect(update_enemy_count)
+	
+func _process(_delta: float) -> void:
+	$CanvasLayer/Health.text = str(player.health)
 
 func show_interact_label():
 	interact_label.visible = true

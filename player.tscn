@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bvhy6trwsa5bv"]
+[gd_scene load_steps=20 format=3 uid="uid://bvhy6trwsa5bv"]
 
 [ext_resource type="Script" uid="uid://c5tpcy814gmg2" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://co4rwim7dwlor" path="res://scripts/guns.gd" id="2_hqtel"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dnrm4g4v6mnrg" path="res://shotgun.tscn" id="5_sweqy"]
 [ext_resource type="PackedScene" uid="uid://dy2ygr54krqvv" path="res://player_ui.tscn" id="6_2hs0m"]
 [ext_resource type="PackedScene" uid="uid://cxysxjss4rx37" path="res://laser.tscn" id="7_1jxqw"]
+[ext_resource type="Script" uid="uid://gv6tdmnnppol" path="res://scripts/hurtbox.gd" id="8_dw050"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
@@ -49,6 +50,9 @@ collision_bounce = 0.13
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_onrkg"]
 radius = 0.77384794
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1jxqw"]
+radius = 2.402123
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 9
@@ -140,7 +144,19 @@ player = NodePath("../..")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.2906071, 0.12200308, -0.11219561)
 player = NodePath("../..")
 
-[node name="PlayerUI" parent="." instance=ExtResource("6_2hs0m")]
+[node name="PlayerUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_2hs0m")]
+player = NodePath("..")
 
 [node name="Laser" parent="." instance=ExtResource("7_1jxqw")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.3216547, 0, -0.9615948)
+
+[node name="Hurtbox" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+script = ExtResource("8_dw050")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+shape = SubResource("SphereShape3D_1jxqw")
+
+[connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]

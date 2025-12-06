@@ -48,6 +48,7 @@ EventBus="*res://scripts/event_bus.gd"
 
 window/size/viewport_width=3440
 window/size/viewport_height=1440
+window/size/mode=2
 window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
@@ -123,6 +124,7 @@ interact={
 
 3d_physics/layer_4="Player"
 3d_physics/layer_5="EnemyCollision"
+3d_physics/layer_6="EnemyHitbox"
 3d_physics/layer_9="EnemyHitbox"
 
 [rendering]

@@ -5,10 +5,10 @@ var enemy_scene := preload("res://enemy.tscn")
 
 @onready var possible_spawns = $PossibleSpawns
 
-func spawn_enemy():
-	var offset = randi_range(15,25)
+func spawn_enemy() -> void:
+	var offset: int = randi_range(15,25)
 	for child in possible_spawns.get_children():
-		if child.entity_counter == 0 and EventBus.enemy_count < 100:
+		if child.entity_counter == 0 and EventBus.enemy_count < 1:
 			var enemy : Enemy = enemy_scene.instantiate()
 			enemy.update_frame_offset = offset
 			get_parent().add_child(enemy)

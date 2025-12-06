@@ -2,14 +2,15 @@ class_name Player
 extends CharacterBody3D
 
 var camera_rotation_speed : float = 200
-var jump_velocity = 50
+var jump_velocity: int = 50
 var speed : float = 100
 var friction : float = 0.9
 var fall_speed : float = 10
-var move_direction = Vector3()
+var move_direction: Vector3 = Vector3()
 var first_weapon : Guns.weapons
 var second_weapon : Guns.weapons
 var can_open_shop : bool = false
+var health : float = 100
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -68,7 +69,7 @@ func _input(event):
 
 
 func camera_follows_player():
-	var player_pos = global_transform.origin
+	var player_pos: Vector3 = global_transform.origin
 	camera_rig.global_transform.origin = player_pos
 
 func rotate_camera(delta):
@@ -80,11 +81,11 @@ func rotate_camera(delta):
 
 func look_at_cursor():
 	# Create a horizontal plane, and find a point where the ray intersects with it
-	var player_pos = global_transform.origin
-	var dropPlane  = Plane(Vector3(0, 1, 0), player_pos.y)
+	var player_pos: Vector3 = global_transform.origin
+	var dropPlane: Plane = Plane(Vector3(0, 1, 0), player_pos.y)
 	# Project a ray from camera, from where the mouse cursor is in 2D viewport
-	var ray_length = 1000
-	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_length: float = 1000
+	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
 	var cursor_pos = dropPlane.intersects_ray(from,to)
@@ -93,8 +94,7 @@ func look_at_cursor():
 		cursor.global_transform.origin = cursor_pos + Vector3(0,0,0)
 		# Make player look at the cursor
 		look_at(cursor_pos, Vector3.UP)
-#
-#
+
 func move_player(delta):
 	move_direction = Vector3()
 	var camera_basis = camera.get_global_transform().basis
@@ -124,3 +124,7 @@ func on_upgrade_point_exited():
 	ui.hide_interact_label()
 	can_open_shop = false
 	ui.hide_shop()
+	
+func take_damage(damage: float):
+	health -= damage
+		
