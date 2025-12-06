@@ -62,6 +62,8 @@ func _physics_process(delta: float) -> void:
 	look_toward_pos = look_toward_pos.move_toward(Vector3(look_at_pos.x, global_position.y + 5, look_at_pos.z), delta * 30)
 	if look_toward_pos.x != global_position.x or look_toward_pos.z != global_position.z:
 		look_at(Vector3(look_toward_pos.x, global_position.y, look_toward_pos.z))
+	if velocity != Vector3.ZERO:
+		is_idle = false
 	move_and_slide()
 	
 func _process(delta: float) -> void:
@@ -89,6 +91,7 @@ func _on_aggro_range_area_entered(area: Area3D) -> void:
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity
 
+
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name.contains("Reaction"):
 		speed = 500
@@ -97,6 +100,8 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name.contains("Attack"):
 		is_attacking = false
 		speed_modifier = 1
+		if global_position.distance_to(player.global_position) < 15:
+			is_idle = true
 		
 func _on_navigation_agent_3d_target_reached() -> void:
 	if not is_attacking:
