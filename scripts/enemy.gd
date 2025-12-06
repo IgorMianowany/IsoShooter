@@ -51,7 +51,10 @@ func _physics_process(delta: float) -> void:
 			pursue_cooldown = pursue_cooldown_max
 
 		velocity = new_velocity
-		look_at_pos = global_position + velocity
+		if not is_attacking:
+			look_at_pos = global_position + velocity
+		else:
+			look_at_pos = player.global_position
 		# look at movement direction
 
 		# look at players
@@ -97,6 +100,7 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		
 func _on_navigation_agent_3d_target_reached() -> void:
 	if not is_attacking:
+		look_at(player.global_position)
 		is_attacking = true
 		speed_modifier = 0
 		
