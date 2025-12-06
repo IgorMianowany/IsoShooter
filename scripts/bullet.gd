@@ -1,7 +1,7 @@
 class_name Bullet
 extends Node3D
 
-var speed : float = 40
+var speed : float = 70
 var lifetime_timer : Timer = Timer.new()
 var damage : float = 1
 
