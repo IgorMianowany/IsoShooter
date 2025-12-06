@@ -38,8 +38,8 @@ ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.03
-volumetric_fog_albedo = Color(0.65342677, 0.15700105, 0.10858277, 1)
+volumetric_fog_density = 0.06
+volumetric_fog_albedo = Color(0.49226552, 0.10700958, 0.07082244, 1)
 volumetric_fog_emission = Color(0.25839838, 0.13041401, 0.0720902, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wse8f"]
@@ -343,6 +343,7 @@ environment = SubResource("Environment_tlwt5")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="NewMap"]
 transform = Transform3D(-0.92802256, 0.18301278, 0.32446936, 0.36486754, 0.27086613, 0.89078796, 0.07513781, 0.94505966, -0.31814522, 0, 32, 0)
 light_color = Color(0.99110085, 0.7062681, 0.5810792, 1)
+light_energy = 0.05
 shadow_enabled = true
 sky_mode = 1
 
@@ -1076,6 +1077,7 @@ transform = Transform3D(-4.371139e-07, 0, 10, 0, 10, 0, -10, 0, -4.371139e-07, 8
 transform = Transform3D(-4.371139e-07, 0, 10, 0, 10, 0, -10, 0, -4.371139e-07, 84.85268, -9.536743e-07, -54.58969)
 
 [node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="NewMap"]
+cast_shadow = 0
 multimesh = SubResource("MultiMesh_il2jm")
 script = ExtResource("22_wjb0r")
 albedo = Color(0.78800243, 0.48815352, 0.2973459, 1)

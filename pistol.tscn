@@ -98,6 +98,16 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hbm4m")
 
+[sub_resource type="Animation" id="Animation_bttkv"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pistol_02_Cube")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
 [sub_resource type="Animation" id="Animation_08c3m"]
 resource_name = "shoot"
 length = 0.1
@@ -110,16 +120,6 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.01, 1, 0, 0, 0.1, 0.1, 1, 0, 0, 0)
 
-[sub_resource type="Animation" id="Animation_bttkv"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pistol_02_Cube")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6e3nq"]
 _data = {
 &"RESET": SubResource("Animation_bttkv"),
@@ -131,6 +131,7 @@ script = ExtResource("1_08c3m")
 
 [node name="Pistol_02_Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_p36ip")
 skeleton = NodePath("")
 
