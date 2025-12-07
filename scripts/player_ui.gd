@@ -8,6 +8,7 @@ var shop_scene := preload("res://shop.tscn")
 @onready var interact_label = $CanvasLayer/MarginContainer/Label
 @onready var shop_holder = $ShopHolder
 @onready var health = $CanvasLayer/MarginContainer2/Health
+@onready var points = $CanvasLayer/MarginContainer3/Points
 
 func _ready() -> void:
 	interact_label.text = "Press 'e' to open shop"
@@ -16,6 +17,7 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	health.text = str(int(player.health)) + "/" + str(int(player.max_health))
+	points.text = "points: " + str(int(EventBus.points))
 
 func show_interact_label():
 	interact_label.visible = true

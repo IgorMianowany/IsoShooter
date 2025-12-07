@@ -1,6 +1,7 @@
 extends Node
 
 var enemy_count : int = 0
+var points : int = 0
 
 @warning_ignore_start("unused_signal")
 signal upgrade_selected(upgrade_type)
@@ -15,3 +16,4 @@ func add_enemy():
 	enemy_count += 1
 func remove_enemy():
 	enemy_count -= 1
+	points += 1

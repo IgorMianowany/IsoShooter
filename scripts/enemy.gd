@@ -87,6 +87,7 @@ func _on_area_3d_body_part_hit(damage: Variant) -> void:
 func _on_aggro_range_area_entered(area: Area3D) -> void:
 	player = area.get_parent()
 	is_idle = false
+	$AggroRange.call_deferred("set_process_mode", PROCESS_MODE_DISABLED)
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = safe_velocity
