@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://v1q6w2gwf23d"]
 
-[ext_resource type="Script" uid="uid://c5i7e6vmw5tqd" path="res://scripts/shop.gd" id="1_e7rdd"]
+[ext_resource type="Script" path="res://scripts/shop.gd" id="1_e7rdd"]
 [ext_resource type="PackedScene" uid="uid://dg3lokfy5g3xp" path="res://upgrade_button.tscn" id="1_viryw"]
 
 [node name="Shop" type="Control"]
@@ -73,15 +73,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -793.0
-offset_top = -284.5
+offset_left = 712.0
+offset_top = 151.0
 offset_right = 798.0
 offset_bottom = 321.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
-theme_override_constants/margin_left = 1500
-theme_override_constants/margin_top = 400
 
 [node name="Budget" type="Label" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
