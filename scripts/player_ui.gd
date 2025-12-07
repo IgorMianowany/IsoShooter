@@ -6,7 +6,7 @@ var is_shop_open : bool = false
 
 @export var player : Player
 
-@onready var interact_label = $CanvasLayer/MarginContainer/Label
+@onready var interact_label = $CanvasLayer/MarginContainer/InteractLabel
 @onready var shop_holder = $ShopHolder
 @onready var health = $CanvasLayer/MarginContainer2/Health
 @onready var points = $CanvasLayer/MarginContainer3/Points

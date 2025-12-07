@@ -29,7 +29,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_top = 400
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
+[node name="InteractLabel" type="Label" parent="CanvasLayer/MarginContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
@@ -62,18 +62,24 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 
 [node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -119.0
-offset_right = 101.0
-grow_vertical = 0
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_bottom = 50
+offset_right = 157.0
+offset_bottom = 119.0
+theme_override_constants/margin_top = 25
 
 [node name="Points" type="Label" parent="CanvasLayer/MarginContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+text = "11"
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ammo" type="Label" parent="CanvasLayer/MarginContainer4"]
+layout_mode = 2
+
+[node name="Magazines" type="Label" parent="CanvasLayer/MarginContainer4"]
+layout_mode = 2
 
 [node name="ShopHolder" type="Control" parent="."]
 anchors_preset = 0

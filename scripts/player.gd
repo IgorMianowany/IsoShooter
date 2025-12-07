@@ -34,7 +34,7 @@ func _ready():
 	second_weapon = Guns.weapons.PISTOL
 
 func _physics_process(delta):
-	$CanvasLayer/FPS.text = str(Engine.get_frames_per_second())
+	$CanvasLayer/FPS.text = "FPS: " + str(Engine.get_frames_per_second())
 	
 	camera_follows_player()
 	rotate_camera(delta)
