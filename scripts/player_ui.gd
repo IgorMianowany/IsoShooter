@@ -2,6 +2,7 @@ class_name PlayerUI
 extends Control
 
 var shop_scene := preload("res://shop.tscn")
+var is_shop_open : bool = false
 
 @export var player : Player
 
@@ -26,14 +27,19 @@ func hide_interact_label():
 	interact_label.visible = false
 
 func show_shop():
+	if is_shop_open:
+		return
+	is_shop_open = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	shop_holder.add_child(shop_scene.instantiate())
+	hide_interact_label()
 	
 func hide_shop():
 	var shops = shop_holder.get_children()
 	for shop in shops:
 		shop.queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	is_shop_open = false
 	
 func update_enemy_count():
 	$CanvasLayer/EnemyCount.text = "Enemy count: " + str(EventBus.enemy_count)

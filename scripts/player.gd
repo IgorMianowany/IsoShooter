@@ -18,7 +18,7 @@ var max_health : float = 100
 @onready var cursor = $Cursor
 @onready var current_emitter = $MachineGunEmitter
 @onready var guns = $Guns
-@onready var ui = $PlayerUI
+@onready var ui: PlayerUI = $PlayerUI
 @onready var take_damage_emitter : GPUParticles3D = $TakeDamageEmitter
 
 ## second gun
@@ -74,7 +74,9 @@ func camera_follows_player():
 	var player_pos: Vector3 = global_transform.origin
 	camera_rig.global_transform.origin = player_pos
 
-func rotate_camera(delta):
+func rotate_camera(delta) -> void:
+	if ui.is_shop_open:
+		return
 	if Input.is_action_pressed("rotate_camera_clockwise"):
 		camera_rig.rotate_y(deg_to_rad(-camera_rotation_speed * delta)) 
 	if Input.is_action_pressed("rotate_camera_counterclockwise"):
