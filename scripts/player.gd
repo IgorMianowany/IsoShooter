@@ -30,24 +30,27 @@ func _ready():
 	cursor.set_as_top_level(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	guns.switch_weapon(guns.weapons.PISTOL)
-	first_weapon = Guns.weapons.SHOTGUN
+	#first_weapon = Guns.weapons.SHOTGUN
 	second_weapon = Guns.weapons.PISTOL
 
 func _physics_process(delta):
 	$CanvasLayer/FPS.text = "FPS: " + str(Engine.get_frames_per_second())
-	
-	camera_follows_player()
-	rotate_camera(delta)
-	
-	look_at_cursor()
+
 	move_player(delta)
 	
 	velocity *= friction
 	if not is_on_floor():
 		velocity += get_gravity() * delta * fall_speed
 	move_and_slide()
+	if ui.is_shop_open:
+		return
+	camera_follows_player()
+	rotate_camera(delta)
 	
+	look_at_cursor()
 func _process(_delta: float) -> void:
+	if ui.is_shop_open:
+		return
 	if Input.is_action_pressed("shoot"):
 		#$Guns/Rifle._shoot()
 		#$Guns/Rifle2._shoot()
@@ -66,6 +69,7 @@ func _input(event):
 		guns.switch_weapon(first_weapon)
 	if event.is_action("weapon_2"):
 		guns.switch_weapon(second_weapon)
+	#$Laser2.visible = guns.is_akimbo
 	if can_open_shop and event.is_action_pressed("interact"):
 		ui.show_shop()
 
@@ -139,3 +143,14 @@ func take_damage(damage: float, origin: Vector3):
 	new_emitter.emitting = true
 	await(new_emitter.finished)
 	new_emitter.queue_free()
+	
+func get_current_magazine() -> int:
+	return guns.get_current_magazine()
+
+func get_magazine_size() -> int:
+	return guns.get_magazine_size()
+	
+func get_magazines() -> int:
+	return guns.get_magazines()
+
+	

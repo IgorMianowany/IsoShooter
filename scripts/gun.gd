@@ -8,5 +8,8 @@ var magazines : int
 var instance
 @export var player : Player
 
+func _ready() -> void:
+	current_magazine = magazine_size
+
 func _shoot():
 	pass

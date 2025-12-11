@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://v1q6w2gwf23d"]
 
-[ext_resource type="Script" path="res://scripts/shop.gd" id="1_e7rdd"]
+[ext_resource type="Script" uid="uid://c5i7e6vmw5tqd" path="res://scripts/shop.gd" id="1_e7rdd"]
 [ext_resource type="PackedScene" uid="uid://dg3lokfy5g3xp" path="res://upgrade_button.tscn" id="1_viryw"]
 
 [node name="Shop" type="Control"]
@@ -35,6 +35,7 @@ theme_override_constants/separation = 250
 
 [node name="UpgradeButton" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
 layout_mode = 2
+upgrade_type = 1
 
 [node name="UpgradeButton2" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
 layout_mode = 2

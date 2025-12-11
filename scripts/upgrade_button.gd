@@ -8,7 +8,7 @@ extends Control
 @export var upgrade_type : Guns.weapons
 
 func _ready() -> void:
-	button.disabled = false
+	#button.disabled = false
 	match upgrade_type:
 		Guns.weapons.PISTOL_AKIMBO:
 			label.text = "Unlock Dual Pistols"
