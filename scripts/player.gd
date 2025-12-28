@@ -12,6 +12,7 @@ var second_weapon : Guns.weapons
 var can_open_shop : bool = false
 var health : float = 100
 var max_health : float = 100
+var is_reloading : bool = false
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -32,6 +33,7 @@ func _ready():
 	guns.switch_weapon(guns.weapons.PISTOL)
 	#first_weapon = Guns.weapons.SHOTGUN
 	second_weapon = Guns.weapons.PISTOL
+	guns.reload_finished.connect(reload_finished)
 
 func _physics_process(delta):
 	$CanvasLayer/FPS.text = "FPS: " + str(Engine.get_frames_per_second())
@@ -51,7 +53,7 @@ func _physics_process(delta):
 func _process(_delta: float) -> void:
 	if ui.is_shop_open:
 		return
-	if Input.is_action_pressed("shoot"):
+	if not is_reloading and Input.is_action_pressed("shoot"):
 		#$Guns/Rifle._shoot()
 		#$Guns/Rifle2._shoot()
 		guns.shoot()
@@ -63,7 +65,7 @@ func _input(event):
 	if event.is_action_pressed("shoot"):
 		current_emitter.restart()
 		current_emitter.emitting = false
-	if event.is_action_released("shoot"):
+	if not is_reloading and event.is_action_released("shoot"):
 		current_emitter.emitting = false
 	if event.is_action("weapon_1"):
 		guns.switch_weapon(first_weapon)
@@ -72,7 +74,8 @@ func _input(event):
 	#$Laser2.visible = guns.is_akimbo
 	if can_open_shop and event.is_action_pressed("interact"):
 		ui.show_shop()
-
+	if event.is_action_pressed("reload"):
+		reload()
 
 func camera_follows_player():
 	var player_pos: Vector3 = global_transform.origin
@@ -152,5 +155,13 @@ func get_magazine_size() -> int:
 	
 func get_magazines() -> int:
 	return guns.get_magazines()
+	
+func reload():
+	if not is_reloading:
+		is_reloading = true
+		guns.reload_current_weapon()
+		
+func reload_finished():
+	is_reloading = false
 
 	

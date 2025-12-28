@@ -10,6 +10,8 @@ var is_akimbo : bool = false
 @onready var akimbo_weapon : Gun = $Pistol2
 @onready var current_weapon : Gun = $Pistol
 
+signal reload_finished
+
 func _ready():
 	EventBus.upgrade_selected.connect(handle_upgrade_selected)
 
@@ -53,3 +55,12 @@ func get_magazine_size() -> int:
 	
 func get_magazines() -> int:
 	return current_weapon.magazines
+	
+func reload_current_weapon():
+	if is_akimbo:
+		akimbo_weapon._reload()
+	await(current_weapon._reload())
+	reload_finished.emit()
+	
+	
+	

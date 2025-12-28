@@ -6,11 +6,18 @@ var fire_rate : float = 1
 @onready var gun_anim : AnimationPlayer = $AnimationPlayer
 @onready var gun_barrel = $Barrel
 
+func _ready() -> void:
+	magazine_size = 5
+	magazines = 10
+	reload_time = 2
+	super()
+
 func _process(delta: float) -> void:
 	fire_rate -= delta
 
 func _shoot():
 	if !gun_anim.is_playing() and fire_rate <= 0:
+		current_magazine -= 1
 		fire_rate = 1
 		gun_anim.play("shoot")
 		for child in gun_barrel.get_children():

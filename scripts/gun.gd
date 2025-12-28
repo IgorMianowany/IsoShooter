@@ -6,10 +6,17 @@ var current_magazine : int
 var magazine_size : int
 var magazines : int
 var instance
+var reload_time : float = 1
 @export var player : Player
+
+@warning_ignore("unused_signal") signal reload_finished
 
 func _ready() -> void:
 	current_magazine = magazine_size
 
 func _shoot():
 	pass
+	
+func _reload():
+	await(get_tree().create_timer(reload_time).timeout)
+	current_magazine = magazine_size
