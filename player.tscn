@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvhy6trwsa5bv"]
+[gd_scene load_steps=25 format=3 uid="uid://bvhy6trwsa5bv"]
 
 [ext_resource type="Script" uid="uid://c5tpcy814gmg2" path="res://scripts/player.gd" id="1_4flbx"]
+[ext_resource type="BoxMesh" uid="uid://b4fn23704f876" path="res://materials/player.tres" id="2_b26j0"]
 [ext_resource type="Script" uid="uid://co4rwim7dwlor" path="res://scripts/guns.gd" id="2_hqtel"]
 [ext_resource type="PackedScene" uid="uid://on5ll4epths2" path="res://rifle.tscn" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://otavqgq0a818" path="res://pistol.tscn" id="3_i3pqv"]
@@ -10,12 +11,6 @@
 [ext_resource type="Script" uid="uid://gv6tdmnnppol" path="res://scripts/hurtbox.gd" id="8_dw050"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sh265"]
-albedo_color = Color(1, 0.4, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_4flbx"]
-material = SubResource("StandardMaterial3D_sh265")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
 albedo_color = Color(0, 0.64642394, 0.21383226, 1)
@@ -67,6 +62,21 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_dw050")
 size = Vector3(0.4, 0.1, 0.1)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n7ghd"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b26j0"]
+transparency = 1
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(0, 0.9137255, 0.95686275, 0.078431375)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n7ghd"]
+material = SubResource("StandardMaterial3D_b26j0")
+size = Vector3(2, 2, 2)
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 9
 floor_max_angle = 1.0471976
@@ -77,8 +87,8 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_sh265")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0008263588, 0, 0)
-mesh = SubResource("BoxMesh_4flbx")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0008263588, 0, 0)
+mesh = ExtResource("2_b26j0")
 
 [node name="CameraRig" type="Marker3D" parent="."]
 
@@ -191,5 +201,14 @@ one_shot = true
 explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_dw050")
 draw_pass_1 = SubResource("BoxMesh_b26j0")
+
+[node name="TimeWarpEmitter" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+amount = 4
+lifetime = 2.0
+preprocess = 1.0
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_n7ghd")
+draw_pass_1 = SubResource("BoxMesh_n7ghd")
 
 [connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
