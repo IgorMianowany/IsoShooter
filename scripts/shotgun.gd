@@ -10,6 +10,7 @@ func _ready() -> void:
 	magazine_size = 5
 	magazines = 10
 	reload_time = 2
+	bullet_pierce = 3
 	super()
 
 func _process(delta: float) -> void:
@@ -24,5 +25,6 @@ func _shoot():
 			instance = bullet.instantiate()
 			player.get_parent().add_child(instance)
 			instance.damage = 1
+			instance.pierce = bullet_pierce
 			instance.global_position = child.global_position
 			instance.transform.basis = child.global_transform.basis

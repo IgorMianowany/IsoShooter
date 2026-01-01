@@ -7,6 +7,7 @@ var magazine_size : int
 var magazines : int
 var instance
 var reload_time : float = 1
+var bullet_pierce
 @export var player : Player
 
 @warning_ignore("unused_signal") signal reload_finished
