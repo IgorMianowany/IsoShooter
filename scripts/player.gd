@@ -13,6 +13,8 @@ var can_open_shop : bool = false
 var health : float = 100
 var max_health : float = 100
 var is_reloading : bool = false
+var skill_timer : int = 2
+var skill_time : int = 2
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -76,6 +78,10 @@ func _input(event):
 		ui.show_shop()
 	if event.is_action_pressed("reload"):
 		reload()
+	if event.is_action("use_skill") and Engine.time_scale == 1:
+		Engine.time_scale = .5
+		await(get_tree().create_timer(skill_time).timeout)
+		Engine.time_scale = 1
 
 func camera_follows_player():
 	var player_pos: Vector3 = global_transform.origin
