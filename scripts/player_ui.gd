@@ -25,6 +25,8 @@ func _process(_delta: float) -> void:
 	health.text = str(int(player.health)) + "/" + str(int(player.max_health))
 	points.text = "points: " + str(int(EventBus.points))
 	ammo.text = str(player.get_current_magazine()) + "/" + str(player.get_magazine_size())
+	if player.is_reloading:
+		ammo.text = "reloading"
 
 func show_interact_label():
 	interact_label.visible = true
