@@ -19,6 +19,7 @@ var time_warp_positions : Array[Vector3] = [Vector3.ZERO,Vector3.ZERO,Vector3.ZE
 var time_warp_cooldown : float = 1
 var time_warp_counter : int = 1
 var is_time_warping : bool = false
+var delta_modifier : float = 1
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -46,6 +47,7 @@ func _ready():
 		child.set_as_top_level(true)
 
 func _physics_process(delta):
+	delta *= delta_modifier
 	$CanvasLayer/FPS.text = "FPS: " + str(Engine.get_frames_per_second())
 
 	move_player(delta)
@@ -93,6 +95,8 @@ func _input(event):
 	if event.is_action("use_skill_2") and time_warp_cooldown < 0:
 		time_warp_cooldown = 1
 		time_warp()
+	if event.is_action_pressed("use_skill_3"):
+		toggle_time_slow()
 
 func camera_follows_player():
 	var player_pos: Vector3 = global_transform.origin
@@ -223,4 +227,10 @@ func add_time_warp_position():
 	if time_warp_positions.size() > 6:
 		time_warp_positions.pop_front()
 
-	
+func toggle_time_slow():
+	if Engine.time_scale == 1:
+		delta_modifier = 4
+		Engine.time_scale = .5
+	else:
+		Engine.time_scale = 1
+		delta_modifier = 1
