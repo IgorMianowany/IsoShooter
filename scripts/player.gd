@@ -15,6 +15,9 @@ var max_health : float = 100
 var is_reloading : bool = false
 var skill_timer : int = 2
 var skill_time : int = 2
+var time_warp_positions : Array[Vector3] = [Vector3.ZERO,Vector3.ZERO,Vector3.ZERO,Vector3.ZERO]
+var time_warp_cooldown : float = 1
+var time_warp_counter : int = 1
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -23,6 +26,7 @@ var skill_time : int = 2
 @onready var guns = $Guns
 @onready var ui: PlayerUI = $PlayerUI
 @onready var take_damage_emitter : GPUParticles3D = $TakeDamageEmitter
+@onready var time_warp_timer : Timer = $TimeWarpTimer
 
 ## second gun
 @onready var gun_anim2 : AnimationPlayer = $Guns/Rifle2/SteampunkRifle/AnimationPlayer
@@ -36,6 +40,11 @@ func _ready():
 	#first_weapon = Guns.weapons.SHOTGUN
 	second_weapon = Guns.weapons.PISTOL
 	guns.reload_finished.connect(reload_finished)
+	time_warp_timer.timeout.connect(add_time_warp_position)
+	$Node3D/ghost_marker_1.set_as_top_level(true)
+	$Node3D/ghost_marker_2.set_as_top_level(true)
+	$Node3D/ghost_marker_3.set_as_top_level(true)
+	$Node3D/ghost_marker_4.set_as_top_level(true)
 
 func _physics_process(delta):
 	$CanvasLayer/FPS.text = "FPS: " + str(Engine.get_frames_per_second())
@@ -52,7 +61,9 @@ func _physics_process(delta):
 	rotate_camera(delta)
 	
 	look_at_cursor()
-func _process(_delta: float) -> void:
+	
+func _process(delta: float) -> void:
+	time_warp_cooldown -= delta
 	if ui.is_shop_open:
 		return
 	if not is_reloading and Input.is_action_pressed("shoot"):
@@ -78,10 +89,11 @@ func _input(event):
 		ui.show_shop()
 	if event.is_action_pressed("reload"):
 		reload()
-	if event.is_action("use_skill") and Engine.time_scale == 1:
-		Engine.time_scale = .5
-		await(get_tree().create_timer(skill_time).timeout)
-		Engine.time_scale = 1
+	if event.is_action("use_skill_1") and Engine.time_scale == 1:
+		time_slow()
+	if event.is_action("use_skill_2") and time_warp_cooldown < 0:
+		time_warp_cooldown = 1
+		time_warp()
 
 func camera_follows_player():
 	var player_pos: Vector3 = global_transform.origin
@@ -169,5 +181,30 @@ func reload():
 		
 func reload_finished():
 	is_reloading = false
+	
+func time_slow():
+	Engine.time_scale = .5
+	await(get_tree().create_timer(skill_time).timeout)
+	Engine.time_scale = 1
+	
+func time_warp():
+	global_position = time_warp_positions.front()
+	
+func add_time_warp_position():
+	time_warp_positions.push_back(global_position)
+	match time_warp_counter:
+		1:
+			$Node3D/ghost_marker_1.global_position = time_warp_positions.back()
+		2:
+			$Node3D/ghost_marker_2.global_position = time_warp_positions.back()
+		3:
+			$Node3D/ghost_marker_3.global_position = time_warp_positions.back()
+		4:
+			$Node3D/ghost_marker_4.global_position = time_warp_positions.back()
+	time_warp_counter += 1
+	if time_warp_counter > 4:
+		time_warp_counter = 1
+	if time_warp_positions.size() > 4:
+		time_warp_positions.pop_front()
 
 	
