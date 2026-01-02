@@ -202,28 +202,38 @@ process_material = SubResource("ParticleProcessMaterial_n7ghd")
 draw_pass_1 = ExtResource("10_n7ghd")
 
 [node name="TimeWarpTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.75
 autostart = true
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="GhostMarkers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.7083428, 0, 0, 0, 1.870679, 8.291548, 0, 0)
 
-[node name="ghost_marker_1" type="MeshInstance3D" parent="Node3D"]
+[node name="ghost_marker_1" type="MeshInstance3D" parent="GhostMarkers"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("10_n7ghd")
 skeleton = NodePath("../..")
 
-[node name="ghost_marker_2" type="MeshInstance3D" parent="Node3D"]
+[node name="ghost_marker_2" type="MeshInstance3D" parent="GhostMarkers"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("10_n7ghd")
 skeleton = NodePath("../..")
 
-[node name="ghost_marker_3" type="MeshInstance3D" parent="Node3D"]
+[node name="ghost_marker_3" type="MeshInstance3D" parent="GhostMarkers"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("10_n7ghd")
 skeleton = NodePath("../..")
 
-[node name="ghost_marker_4" type="MeshInstance3D" parent="Node3D"]
+[node name="ghost_marker_4" type="MeshInstance3D" parent="GhostMarkers"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("10_n7ghd")
+skeleton = NodePath("../..")
+
+[node name="ghost_marker_5" type="MeshInstance3D" parent="GhostMarkers"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("10_n7ghd")
+skeleton = NodePath("../..")
+
+[node name="ghost_marker_6" type="MeshInstance3D" parent="GhostMarkers"]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("10_n7ghd")
 skeleton = NodePath("../..")

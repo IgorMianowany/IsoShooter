@@ -18,6 +18,7 @@ var skill_time : int = 2
 var time_warp_positions : Array[Vector3] = [Vector3.ZERO,Vector3.ZERO,Vector3.ZERO,Vector3.ZERO]
 var time_warp_cooldown : float = 1
 var time_warp_counter : int = 1
+var is_time_warping : bool = false
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -41,10 +42,8 @@ func _ready():
 	second_weapon = Guns.weapons.PISTOL
 	guns.reload_finished.connect(reload_finished)
 	time_warp_timer.timeout.connect(add_time_warp_position)
-	$Node3D/ghost_marker_1.set_as_top_level(true)
-	$Node3D/ghost_marker_2.set_as_top_level(true)
-	$Node3D/ghost_marker_3.set_as_top_level(true)
-	$Node3D/ghost_marker_4.set_as_top_level(true)
+	for child in $GhostMarkers.get_children():
+		child.set_as_top_level(true)
 
 func _physics_process(delta):
 	$CanvasLayer/FPS.text = "FPS: " + str(Engine.get_frames_per_second())
@@ -125,6 +124,8 @@ func look_at_cursor():
 		look_at(cursor_pos, Vector3.UP)
 
 func move_player(delta):
+	if is_time_warping:
+		return
 	move_direction = Vector3()
 	var camera_basis = camera.get_global_transform().basis
 	# for some reason camera basis on Y axis is not 0, not sure why but it makes you fly when moving backwards
@@ -188,23 +189,38 @@ func time_slow():
 	Engine.time_scale = 1
 	
 func time_warp():
-	global_position = time_warp_positions.front()
+	is_time_warping = true
+	Engine.time_scale = .4
+	await(get_tree().create_timer(.4).timeout)
+	var counter = time_warp_positions.size()
+	while counter > 0:
+		counter -= 1
+		global_position = time_warp_positions[counter]
+		await(get_tree().create_timer(.05).timeout)
+	Engine.time_scale = 1
+	is_time_warping = false
 	
 func add_time_warp_position():
+	if is_time_warping:
+		return
 	time_warp_positions.push_back(global_position)
 	match time_warp_counter:
 		1:
-			$Node3D/ghost_marker_1.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_1.global_position = time_warp_positions.back()
 		2:
-			$Node3D/ghost_marker_2.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_2.global_position = time_warp_positions.back()
 		3:
-			$Node3D/ghost_marker_3.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_3.global_position = time_warp_positions.back()
 		4:
-			$Node3D/ghost_marker_4.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_4.global_position = time_warp_positions.back()
+		5:
+			$GhostMarkers/ghost_marker_5.global_position = time_warp_positions.back()
+		6:
+			$GhostMarkers/ghost_marker_6.global_position = time_warp_positions.back()
 	time_warp_counter += 1
-	if time_warp_counter > 4:
+	if time_warp_counter > 6:
 		time_warp_counter = 1
-	if time_warp_positions.size() > 4:
+	if time_warp_positions.size() > 6:
 		time_warp_positions.pop_front()
 
 	
