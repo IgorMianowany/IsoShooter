@@ -42,6 +42,7 @@ layout_mode = 2
 
 [node name="UpgradeButton3" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
 layout_mode = 2
+upgrade_type = 5
 
 [node name="UpgradeButton4" parent="CanvasLayer/VBoxContainer/HBoxContainer" instance=ExtResource("1_viryw")]
 layout_mode = 2

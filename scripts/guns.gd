@@ -37,6 +37,8 @@ func switch_weapon(to : weapons):
 				current_weapon = find_child("Rifle2")
 			weapons.SHOTGUN:
 				current_weapon = find_child("Shotgun")
+			weapons.SNIPER:
+				current_weapon = find_child("Sniper")
 		current_weapon.visible = true
 		
 func handle_upgrade_selected(upgrade_type : Guns.weapons):

@@ -5,7 +5,7 @@ var bullet := load("res://bullet.tscn")
 var current_magazine : int
 var magazine_size : int
 var magazines : int
-var instance
+var instance : Bullet
 var reload_time : float = 1
 var bullet_pierce
 @export var player : Player
