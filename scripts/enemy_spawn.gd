@@ -2,8 +2,17 @@ class_name EnemySpawn
 extends Node3D
 
 var enemy_scene := preload("res://enemy.tscn")
+var spawn_timer : float = 1
 
 @onready var possible_spawns = $PossibleSpawns
+
+func _process(delta: float) -> void:
+	delta = delta * EventBus.delta_modifier_non_player
+	spawn_timer -= delta
+	if spawn_timer <= 0:
+		spawn_enemy()
+		spawn_timer = 1
+	
 
 func spawn_enemy() -> void:
 	var offset: int = randi_range(15,25)

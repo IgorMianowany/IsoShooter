@@ -97,6 +97,8 @@ func _input(event):
 		time_warp()
 	if event.is_action_pressed("use_skill_3"):
 		toggle_time_slow()
+	if event.is_action_pressed("use_skill_4"):
+		toggle_time_stop()
 
 func camera_follows_player():
 	var player_pos: Vector3 = global_transform.origin
@@ -234,3 +236,8 @@ func toggle_time_slow():
 	else:
 		Engine.time_scale = 1
 		delta_modifier = 1
+
+func toggle_time_stop():
+	EventBus.time_stop_start.emit(3)
+
+	

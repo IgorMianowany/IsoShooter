@@ -2,7 +2,7 @@ class_name Bullet
 extends Node3D
 
 var speed : float = 70
-var lifetime_timer : Timer = Timer.new()
+var lifetime : float = 3 
 var damage : float = 1
 var pierce : int = 0
 
@@ -10,14 +10,11 @@ var pierce : int = 0
 @onready var ray = $RayCast3D
 @onready var emitter: GPUParticles3D = $GPUParticles3D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	add_child(lifetime_timer)
-	lifetime_timer.connect("timeout", on_lifetime_timeout)
-	lifetime_timer.start(2)
-
 func _physics_process(delta: float) -> void:
+	delta = (delta * EventBus.delta_modifier_non_player)
+	lifetime -= delta
+	if lifetime < 0:
+		on_lifetime_timeout()
 	position += transform.basis * Vector3(0, 0, -speed) * delta
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

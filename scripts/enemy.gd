@@ -27,6 +27,7 @@ var speed_modifier : float = 1
 @onready var healthbar = $SubViewport/Healthbar
 @onready var attack_hitbox : Area3D = $Hitbox
 @onready var mesh : ZombieAnimManager = $Zombie
+@onready var anim_tree : AnimationTree = $AnimationTree
 
 func _ready() -> void:
 	healthbar.init_healthbars(health)
@@ -35,8 +36,11 @@ func _ready() -> void:
 	pursue_cooldown_max += randf_range(0,.25)
 	mesh.attack_start.connect(attack_started)
 	mesh.attack_end.connect(attack_ended)
+	EventBus.time_stop_start.connect(stop_animation)
+	EventBus.time_stop_stop.connect(restart_animation)
 
 func _physics_process(delta: float) -> void:
+	delta = (delta * EventBus.delta_modifier_non_player)
 	frames_since_update += 1
 	# Add the gravity.
 	if not is_on_floor():
@@ -115,3 +119,9 @@ func attack_started():
 
 func attack_ended():
 	attack_hitbox.monitorable = false
+
+func stop_animation(_time):
+	anim_tree.active = false
+	
+func restart_animation():
+	anim_tree.active = true
