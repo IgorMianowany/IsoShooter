@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bvhy6trwsa5bv"]
+[gd_scene load_steps=31 format=3 uid="uid://bvhy6trwsa5bv"]
 
 [ext_resource type="Script" uid="uid://c5tpcy814gmg2" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="BoxMesh" uid="uid://b4fn23704f876" path="res://materials/player.tres" id="2_b26j0"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cunmnuy7h6beq" path="res://sniper.tscn" id="7_nvl01"]
 [ext_resource type="Script" uid="uid://gv6tdmnnppol" path="res://scripts/hurtbox.gd" id="8_dw050"]
 [ext_resource type="BoxMesh" uid="uid://b4vwapuywowyr" path="res://materials/time_warp_ghost.tres" id="10_n7ghd"]
+[ext_resource type="Shader" uid="uid://b6v2vkgbaeykk" path="res://shockwave.gdshader" id="13_bwjto"]
+[ext_resource type="Texture2D" uid="uid://cbtisbkqmshlv" path="res://icon.svg" id="14_606se"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
@@ -66,6 +68,36 @@ size = Vector3(0.4, 0.1, 0.1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n7ghd"]
 gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Shader" id="Shader_urp6f"]
+code = "shader_type spatial;
+
+void vertex() {
+	//COLOR = vec4(UV, 0.0, 1.0);
+
+}
+
+void fragment() {
+	ALBEDO = vec3(UV, 0.0);
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivps1"]
+render_priority = 0
+shader = SubResource("Shader_urp6f")
+
+[sub_resource type="SphereMesh" id="SphereMesh_bwjto"]
+material = SubResource("ShaderMaterial_ivps1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1c27"]
+shader = ExtResource("13_bwjto")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/force = 0.0
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 9
@@ -243,5 +275,17 @@ skeleton = NodePath("../..")
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("10_n7ghd")
 skeleton = NodePath("../..")
+
+[node name="ShaderTest" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.8616884, 0, 0, 0, 3.8616884, 0, 0, 0, 3.8616884, 7.176196, 0, 11.337748)
+mesh = SubResource("SphereMesh_bwjto")
+
+[node name="TextureRect" type="TextureRect" parent="ShaderTest"]
+material = SubResource("ShaderMaterial_u1c27")
+offset_left = 312.0
+offset_top = 203.0
+offset_right = 352.0
+offset_bottom = 243.0
+texture = ExtResource("14_606se")
 
 [connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
