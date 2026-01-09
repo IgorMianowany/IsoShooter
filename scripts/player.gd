@@ -91,7 +91,11 @@ func _input(event):
 	if event.is_action_pressed("reload"):
 		reload()
 	if event.is_action("use_skill_1") and Engine.time_scale == 1:
+		$Shockwave/ShockwaveAnim.speed_scale *= 4
+		time_skill_effect()
 		time_slow()
+		await($Shockwave/ShockwaveAnim.animation_finished)
+		$Shockwave/ShockwaveAnim.speed_scale *= .25
 	if event.is_action("use_skill_2") and time_warp_cooldown < 0:
 		time_warp_cooldown = 1
 		time_warp()
@@ -239,5 +243,8 @@ func toggle_time_slow():
 
 func toggle_time_stop():
 	EventBus.time_stop_start.emit(3)
+	
+func time_skill_effect():
+	$Shockwave/ShockwaveAnim.play("Shockwave")
 
 	

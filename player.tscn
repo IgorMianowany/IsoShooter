@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bvhy6trwsa5bv"]
+[gd_scene load_steps=30 format=3 uid="uid://bvhy6trwsa5bv"]
 
 [ext_resource type="Script" uid="uid://c5tpcy814gmg2" path="res://scripts/player.gd" id="1_4flbx"]
 [ext_resource type="BoxMesh" uid="uid://b4fn23704f876" path="res://materials/player.tres" id="2_b26j0"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://gv6tdmnnppol" path="res://scripts/hurtbox.gd" id="8_dw050"]
 [ext_resource type="BoxMesh" uid="uid://b4vwapuywowyr" path="res://materials/time_warp_ghost.tres" id="10_n7ghd"]
 [ext_resource type="Shader" uid="uid://b6v2vkgbaeykk" path="res://shockwave.gdshader" id="13_bwjto"]
-[ext_resource type="Texture2D" uid="uid://cbtisbkqmshlv" path="res://icon.svg" id="14_606se"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
@@ -69,35 +68,85 @@ size = Vector3(0.4, 0.1, 0.1)
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n7ghd"]
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="Shader" id="Shader_urp6f"]
-code = "shader_type spatial;
-
-void vertex() {
-	//COLOR = vec4(UV, 0.0, 1.0);
-
-}
-
-void fragment() {
-	ALBEDO = vec3(UV, 0.0);
-}
-
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivps1"]
-render_priority = 0
-shader = SubResource("Shader_urp6f")
-
-[sub_resource type="SphereMesh" id="SphereMesh_bwjto"]
-material = SubResource("ShaderMaterial_ivps1")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1c27"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_606se"]
 shader = ExtResource("13_bwjto")
 shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/force = 0.0
+shader_parameter/force = 0.274
+shader_parameter/size = 0.0
+shader_parameter/thickness = 0.2
+
+[sub_resource type="Animation" id="Animation_ivps1"]
+resource_name = "Shockwave"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shockwave/ShockwaveHolder:material:shader_parameter/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shockwave/ShockwaveHolder:material:shader_parameter/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_urp6f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shockwave/ShockwaveHolder:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shockwave/ShockwaveHolder:material:shader_parameter/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shockwave/ShockwaveHolder:material:shader_parameter/force")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.274]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bwjto"]
+_data = {
+&"RESET": SubResource("Animation_urp6f"),
+&"Shockwave": SubResource("Animation_ivps1")
+}
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 9
@@ -276,16 +325,21 @@ transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("10_n7ghd")
 skeleton = NodePath("../..")
 
-[node name="ShaderTest" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.8616884, 0, 0, 0, 3.8616884, 0, 0, 0, 3.8616884, 7.176196, 0, 11.337748)
-mesh = SubResource("SphereMesh_bwjto")
+[node name="Shockwave" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="ShaderTest"]
-material = SubResource("ShaderMaterial_u1c27")
-offset_left = 312.0
-offset_top = 203.0
-offset_right = 352.0
-offset_bottom = 243.0
-texture = ExtResource("14_606se")
+[node name="ShockwaveHolder" type="ColorRect" parent="Shockwave"]
+material = SubResource("ShaderMaterial_606se")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ShockwaveAnim" type="AnimationPlayer" parent="Shockwave"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_bwjto")
+}
 
 [connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
