@@ -20,6 +20,8 @@ var time_warp_cooldown : float = 1
 var time_warp_counter : int = 1
 var is_time_warping : bool = false
 var delta_modifier : float = 1
+var time_slow_resource : float = 2
+var is_time_slow_toggled : bool = false
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -29,6 +31,7 @@ var delta_modifier : float = 1
 @onready var ui: PlayerUI = $PlayerUI
 @onready var take_damage_emitter : GPUParticles3D = $TakeDamageEmitter
 @onready var time_warp_timer : Timer = $TimeWarpTimer
+@onready var shockwave_anim : AnimationPlayer = $Shockwave/ShockwaveAnim
 
 ## second gun
 @onready var gun_anim2 : AnimationPlayer = $Guns/Rifle2/SteampunkRifle/AnimationPlayer
@@ -71,6 +74,14 @@ func _process(delta: float) -> void:
 		#$Guns/Rifle._shoot()
 		#$Guns/Rifle2._shoot()
 		guns.shoot()
+		
+	if is_time_slow_toggled:
+		time_slow_resource -= delta
+		if time_slow_resource < 0:
+			toggle_time_slow()
+	elif time_slow_resource < 2:
+		time_slow_resource += delta/2
+		
 
 
 func _input(event):
@@ -102,6 +113,7 @@ func _input(event):
 	if event.is_action_pressed("use_skill_3"):
 		toggle_time_slow()
 	if event.is_action_pressed("use_skill_4"):
+		shockwave_anim.play("Shockwave_comeback")
 		toggle_time_stop()
 
 func camera_follows_player():
@@ -234,10 +246,12 @@ func add_time_warp_position():
 		time_warp_positions.pop_front()
 
 func toggle_time_slow():
-	if Engine.time_scale == 1:
+	if not is_time_slow_toggled:
 		delta_modifier = 4
 		Engine.time_scale = .5
+		is_time_slow_toggled = true
 	else:
+		is_time_slow_toggled = false
 		Engine.time_scale = 1
 		delta_modifier = 1
 

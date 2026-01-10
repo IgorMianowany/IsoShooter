@@ -20,6 +20,7 @@ func _ready() -> void:
 	EventBus.enemy_spawned.connect(update_enemy_count)
 	EventBus.enemy_died.connect(update_enemy_count)
 	EventBus.upgrade_selected.connect(update_weapons)
+	$CanvasLayer/MarginContainer4/TimeSlowToggleResource.max_value = player.time_slow_resource
 	
 func _process(_delta: float) -> void:
 	health.text = str(int(player.health)) + "/" + str(int(player.max_health))
@@ -27,7 +28,7 @@ func _process(_delta: float) -> void:
 	ammo.text = str(player.get_current_magazine()) + "/" + str(player.get_magazine_size())
 	if player.is_reloading:
 		ammo.text = "reloading"
-
+	$CanvasLayer/MarginContainer4/TimeSlowToggleResource.value = player.time_slow_resource
 func show_interact_label():
 	interact_label.visible = true
 	
