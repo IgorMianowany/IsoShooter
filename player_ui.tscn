@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy2ygr54krqvv"]
+[gd_scene load_steps=3 format=3 uid="uid://dy2ygr54krqvv"]
 
 [ext_resource type="Script" uid="uid://dkyxfivhnrmdd" path="res://scripts/player_ui.gd" id="1_lwipk"]
+[ext_resource type="PackedScene" uid="uid://dmc0lybjpat45" path="res://skill_icon.tscn" id="2_5m0x8"]
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -122,7 +123,14 @@ grow_vertical = 0
 size_flags_horizontal = 4
 theme_override_constants/margin_bottom = 50
 
-[node name="TimeSlowToggleResource" type="ProgressBar" parent="CanvasLayer/MarginContainer4"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer4"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="SkillIcon" parent="CanvasLayer/MarginContainer4/HBoxContainer" instance=ExtResource("2_5m0x8")]
+layout_mode = 2
+
+[node name="TimeSlowToggleResource" type="ProgressBar" parent="CanvasLayer/MarginContainer4/HBoxContainer"]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -132,3 +140,25 @@ show_percentage = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -25.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="timeStopCurrentColdwon" type="Label" parent="Debug/VBoxContainer"]
+layout_mode = 2
+text = "asdaddasdas"
+
+[node name="TimeStopCooldown" type="Label" parent="Debug/VBoxContainer"]
+layout_mode = 2
+text = "dasdasdsadsa"

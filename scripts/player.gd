@@ -22,6 +22,9 @@ var is_time_warping : bool = false
 var delta_modifier : float = 1
 var time_slow_resource : float = 2
 var is_time_slow_toggled : bool = false
+var time_stop_cooldown : float =  3
+var time_stop_cooldown_timer : float = 0
+var is_time_stop : bool = false
 
 @onready var camera = $CameraRig/Camera
 @onready var camera_rig = $CameraRig
@@ -82,6 +85,8 @@ func _process(delta: float) -> void:
 	elif time_slow_resource < 2:
 		time_slow_resource += delta/2
 		
+	if time_stop_cooldown_timer > 0:
+		time_stop_cooldown_timer -= delta
 
 
 func _input(event):
@@ -112,9 +117,12 @@ func _input(event):
 		time_warp()
 	if event.is_action_pressed("use_skill_3"):
 		toggle_time_slow()
-	if event.is_action_pressed("use_skill_4"):
+	if event.is_action_pressed("use_skill_4") and time_stop_cooldown_timer <= 0:
+		is_time_stop = true
+		tdime_stop_cooldown_timer = time_stop_cooldown
 		shockwave_anim.play("Shockwave_comeback")
-		toggle_time_stop()
+		time_stop()
+		
 
 func camera_follows_player():
 	var player_pos: Vector3 = global_transform.origin
@@ -255,9 +263,11 @@ func toggle_time_slow():
 		Engine.time_scale = 1
 		delta_modifier = 1
 
-func toggle_time_stop():
+func time_stop():
 	EventBus.time_stop_start.emit(3)
-	
+	await(shockwave_anim.animation_finished)
+	time_stop_cooldown_timer = time_stop_cooldown
+	is_time_stop = false
 func time_skill_effect():
 	$Shockwave/ShockwaveAnim.play("Shockwave")
 

@@ -20,7 +20,8 @@ func _ready() -> void:
 	EventBus.enemy_spawned.connect(update_enemy_count)
 	EventBus.enemy_died.connect(update_enemy_count)
 	EventBus.upgrade_selected.connect(update_weapons)
-	$CanvasLayer/MarginContainer4/TimeSlowToggleResource.max_value = player.time_slow_resource
+	$CanvasLayer/MarginContainer4/HBoxContainer/TimeSlowToggleResource.max_value = player.time_slow_resource
+	$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.max_progress = player.time_stop_cooldown
 	
 func _process(_delta: float) -> void:
 	health.text = str(int(player.health)) + "/" + str(int(player.max_health))
@@ -28,7 +29,23 @@ func _process(_delta: float) -> void:
 	ammo.text = str(player.get_current_magazine()) + "/" + str(player.get_magazine_size())
 	if player.is_reloading:
 		ammo.text = "reloading"
-	$CanvasLayer/MarginContainer4/TimeSlowToggleResource.value = player.time_slow_resource
+		
+	if player.is_time_stop:
+		$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.toggle_fill_type(TextureProgressBar.FILL_COUNTER_CLOCKWISE)
+	else:
+		$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.toggle_fill_type(TextureProgressBar.FILL_CLOCKWISE)
+
+	$CanvasLayer/MarginContainer4/HBoxContainer/TimeSlowToggleResource.value = player.time_slow_resource
+	$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.max_progress = player.time_stop_cooldown
+	$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.progress = player.time_stop_cooldown - player.time_stop_cooldown_timer
+	
+	
+	
+	$Debug/VBoxContainer/TimeStopCooldown.text = str(player.time_stop_cooldown)
+	$Debug/VBoxContainer/timeStopCurrentColdwon.text = str(player.time_stop_cooldown_timer)
+	
+	
+	
 func show_interact_label():
 	interact_label.visible = true
 	
