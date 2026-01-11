@@ -15,7 +15,8 @@ var max_health : float = 100
 var is_reloading : bool = false
 var skill_timer : int = 2
 var skill_time : int = 2
-var time_warp_positions : Array[Vector3] = [Vector3.ZERO,Vector3.ZERO,Vector3.ZERO,Vector3.ZERO]
+var time_warp_positions : Array[Vector3] #= [Vector3.ZERO,Vector3.ZERO,Vector3.ZERO,Vector3.ZERO]
+var time_warp_hps : Array[float]
 var time_warp_cooldown : float = 1
 var time_warp_counter : int = 1
 var is_time_warping : bool = false
@@ -226,6 +227,7 @@ func time_warp():
 	while counter > 0:
 		counter -= 1
 		global_position = time_warp_positions[counter]
+		health = time_warp_hps[counter]
 		await(get_tree().create_timer(.05).timeout)
 	Engine.time_scale = 1
 	is_time_warping = false
@@ -233,6 +235,8 @@ func time_warp():
 func add_time_warp_position():
 	if is_time_warping:
 		return
+	time_warp_hps.push_back(health)
+	print(time_warp_hps)
 	time_warp_positions.push_back(global_position)
 	match time_warp_counter:
 		1:
@@ -252,6 +256,7 @@ func add_time_warp_position():
 		time_warp_counter = 1
 	if time_warp_positions.size() > 6:
 		time_warp_positions.pop_front()
+		time_warp_hps.pop_front()
 
 func toggle_time_slow():
 	if not is_time_slow_toggled:
@@ -268,6 +273,7 @@ func time_stop():
 	await(shockwave_anim.animation_finished)
 	time_stop_cooldown_timer = time_stop_cooldown
 	is_time_stop = false
+	
 func time_skill_effect():
 	$Shockwave/ShockwaveAnim.play("Shockwave")
 
