@@ -119,7 +119,7 @@ func _input(event):
 		toggle_time_slow()
 	if event.is_action_pressed("use_skill_4") and time_stop_cooldown_timer <= 0:
 		is_time_stop = true
-		tdime_stop_cooldown_timer = time_stop_cooldown
+		time_stop_cooldown_timer = time_stop_cooldown
 		shockwave_anim.play("Shockwave_comeback")
 		time_stop()
 		
