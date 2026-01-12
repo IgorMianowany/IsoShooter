@@ -236,7 +236,6 @@ func add_time_warp_position():
 	if is_time_warping:
 		return
 	time_warp_hps.push_back(health)
-	print(time_warp_hps)
 	time_warp_positions.push_back(global_position)
 	match time_warp_counter:
 		1:
@@ -251,10 +250,14 @@ func add_time_warp_position():
 			$GhostMarkers/ghost_marker_5.global_position = time_warp_positions.back()
 		6:
 			$GhostMarkers/ghost_marker_6.global_position = time_warp_positions.back()
+		7:
+			$GhostMarkers/ghost_marker_7.global_position = time_warp_positions.back()
+		8:
+			$GhostMarkers/ghost_marker_8.global_position = time_warp_positions.back()
 	time_warp_counter += 1
-	if time_warp_counter > 6:
+	if time_warp_counter > $GhostMarkers.get_child_count():
 		time_warp_counter = 1
-	if time_warp_positions.size() > 6:
+	if time_warp_positions.size() > $GhostMarkers.get_child_count():
 		time_warp_positions.pop_front()
 		time_warp_hps.pop_front()
 
