@@ -15,7 +15,7 @@ var max_health : float = 100
 var is_reloading : bool = false
 var skill_timer : int = 2
 var skill_time : int = 2
-var time_warp_positions : Array[Vector3] #= [Vector3.ZERO,Vector3.ZERO,Vector3.ZERO,Vector3.ZERO]
+var time_warp_positions : Array[Transform3D] #= [Vector3.ZERO,Vector3.ZERO,Vector3.ZERO,Vector3.ZERO]
 var time_warp_hps : Array[float]
 var time_warp_cooldown : float = 1
 var time_warp_counter : int = 1
@@ -140,6 +140,9 @@ func rotate_camera(delta) -> void:
 
 
 func look_at_cursor():
+	if is_time_warping:
+		return
+	
 	# Create a horizontal plane, and find a point where the ray intersects with it
 	var player_pos: Vector3 = global_transform.origin
 	var dropPlane: Plane = Plane(Vector3(0, 1, 0), player_pos.y)
@@ -227,9 +230,9 @@ func time_warp():
 	var counter = time_warp_positions.size()
 	while counter > 0:
 		counter -= 1
-		global_position = time_warp_positions[counter]
+		transform = time_warp_positions[counter]
 		health = time_warp_hps[counter]
-		await(get_tree().create_timer(.05).timeout)
+		await(get_tree().create_timer(.035).timeout)
 	Engine.time_scale = 1
 	is_time_warping = false
 	
@@ -237,24 +240,24 @@ func add_time_warp_position():
 	if is_time_warping:
 		return
 	time_warp_hps.push_back(health)
-	time_warp_positions.push_back(global_position)
+	time_warp_positions.push_back(transform)
 	match time_warp_counter:
 		1:
-			$GhostMarkers/ghost_marker_1.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_1.transform = time_warp_positions.back()
 		2:
-			$GhostMarkers/ghost_marker_2.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_2.transform = time_warp_positions.back()
 		3:
-			$GhostMarkers/ghost_marker_3.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_3.transform = time_warp_positions.back()
 		4:
-			$GhostMarkers/ghost_marker_4.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_4.transform = time_warp_positions.back()
 		5:
-			$GhostMarkers/ghost_marker_5.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_5.transform = time_warp_positions.back()
 		6:
-			$GhostMarkers/ghost_marker_6.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_6.transform = time_warp_positions.back()
 		7:
-			$GhostMarkers/ghost_marker_7.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_7.transform = time_warp_positions.back()
 		8:
-			$GhostMarkers/ghost_marker_8.global_position = time_warp_positions.back()
+			$GhostMarkers/ghost_marker_8.transform = time_warp_positions.back()
 	time_warp_counter += 1
 	if time_warp_counter > $GhostMarkers.get_child_count():
 		time_warp_counter = 1
