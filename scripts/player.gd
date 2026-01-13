@@ -36,6 +36,7 @@ var is_time_stop : bool = false
 @onready var take_damage_emitter : GPUParticles3D = $TakeDamageEmitter
 @onready var time_warp_timer : Timer = $TimeWarpTimer
 @onready var shockwave_anim : AnimationPlayer = $Shockwave/ShockwaveAnim
+@onready var player_anim : AnimationPlayer = $Player/AnimationPlayer
 
 ## second gun
 @onready var gun_anim2 : AnimationPlayer = $Guns/Rifle2/SteampunkRifle/AnimationPlayer

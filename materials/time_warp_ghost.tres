@@ -1,12 +1,6 @@
 [gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://b4vwapuywowyr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b26j0"]
-transparency = 1
-shading_mode = 0
-disable_ambient_light = true
-disable_fog = true
-disable_specular_occlusion = true
-albedo_color = Color(0, 0.9137255, 0.95686275, 0.019607844)
+[ext_resource type="Material" uid="uid://dg054ei7ctblm" path="res://materials/ime_warp_material.tres" id="1_2q2il"]
 
 [resource]
-material = SubResource("StandardMaterial3D_b26j0")
+material = ExtResource("1_2q2il")
