@@ -9,6 +9,7 @@ signal upgrade_selected(upgrade_type)
 signal enemy_spawned
 signal enemy_died
 signal time_stop_start(time)
+signal time_stop_unlimited
 signal time_stop_stop
 
 func _ready():
@@ -24,7 +25,10 @@ func remove_enemy():
 	
 func stop_time(time : float):
 	delta_modifier_non_player = 0
+	if (time > 99):
+		return
 	await(get_tree().create_timer(time).timeout)
 	delta_modifier_non_player = 1
 	time_stop_stop.emit()
+	
 	

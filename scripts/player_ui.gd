@@ -51,6 +51,8 @@ func _process(_delta: float) -> void:
 	$Debug/VBoxContainer/TimeStopCooldown.text = str(player.time_stop_cooldown)
 	$Debug/VBoxContainer/timeStopCurrentColdwon.text = str(player.time_stop_cooldown_timer)
 	
+
+	
 	
 	
 func show_interact_label():
@@ -62,6 +64,8 @@ func hide_interact_label():
 func show_shop():
 	if is_shop_open:
 		return
+	EventBus.delta_modifier_non_player = 0
+	EventBus.time_stop_start.emit(100)
 	is_shop_open = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	shop_holder.add_child(shop_scene.instantiate())
@@ -73,6 +77,8 @@ func hide_shop():
 		shop.queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	is_shop_open = false
+	EventBus.delta_modifier_non_player = 1
+	EventBus.time_stop_stop.emit()
 	
 func update_enemy_count():
 	$CanvasLayer/EnemyCount.text = "Enemy count: " + str(EventBus.enemy_count)
