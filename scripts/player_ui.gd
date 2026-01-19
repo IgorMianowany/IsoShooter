@@ -14,14 +14,17 @@ var is_shop_open : bool = false
 @onready var magazines = $CanvasLayer/VBoxContainer/MarginContainer4/Magazines
 @onready var weapon1 : Label = $CanvasLayer/VBoxContainer/MarginContainer/Weapon1
 @onready var weapon2 : Label = $CanvasLayer/VBoxContainer/MarginContainer2/Weapon2
+@onready var time_slow_icon : SkillIcon = $CanvasLayer/MarginContainer4/HBoxContainer/TimeSlow
+@onready var rewind_icon : SkillIcon = $CanvasLayer/MarginContainer4/HBoxContainer/Rewind
+@onready var time_slow_resource : ProgressBar = $CanvasLayer/MarginContainer4/HBoxContainer/TimeSlowToggleResource
 
 func _ready() -> void:
 	interact_label.text = "Press 'e' to open shop"
 	EventBus.enemy_spawned.connect(update_enemy_count)
 	EventBus.enemy_died.connect(update_enemy_count)
 	EventBus.upgrade_selected.connect(update_weapons)
-	$CanvasLayer/MarginContainer4/HBoxContainer/TimeSlowToggleResource.max_value = player.time_slow_resource
-	$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.max_progress = player.time_stop_cooldown
+	time_slow_resource.max_value = player.time_slow_resource
+	time_slow_icon.max_progress = player.time_stop_cooldown
 	
 func _process(_delta: float) -> void:
 	health.text = str(int(player.health)) + "/" + str(int(player.max_health))
@@ -31,13 +34,13 @@ func _process(_delta: float) -> void:
 		ammo.text = "reloading"
 		
 	if player.is_time_stop:
-		$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.toggle_fill_type(TextureProgressBar.FILL_COUNTER_CLOCKWISE)
+		time_slow_icon.toggle_fill_type(TextureProgressBar.FILL_COUNTER_CLOCKWISE)
 	else:
-		$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.toggle_fill_type(TextureProgressBar.FILL_CLOCKWISE)
+		time_slow_icon.toggle_fill_type(TextureProgressBar.FILL_CLOCKWISE)
 
-	$CanvasLayer/MarginContainer4/HBoxContainer/TimeSlowToggleResource.value = player.time_slow_resource
-	$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.max_progress = player.time_stop_cooldown
-	$CanvasLayer/MarginContainer4/HBoxContainer/SkillIcon.progress = player.time_stop_cooldown - player.time_stop_cooldown_timer
+	time_slow_resource.value = player.time_slow_resource
+	time_slow_icon.max_progress = player.time_stop_cooldown
+	time_slow_icon.progress = player.time_stop_cooldown - player.time_stop_cooldown_timer
 	
 	
 	

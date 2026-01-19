@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2irsvv2o1fbw"
-path="res://.godot/imported/progress_CW_25.png-e14ff526d1ebad648cb9ada263804f54.ctex"
+uid="uid://bdqj6k44nf6eb"
+path="res://.godot/imported/busy_hourglass_outline_detail.png-3c3880ee7f19c8ee36c5167f76ad4ef8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/skils/progress_CW_25.png"
-dest_files=["res://.godot/imported/progress_CW_25.png-e14ff526d1ebad648cb9ada263804f54.ctex"]
+source_file="res://icons/skills/busy_hourglass_outline_detail.png"
+dest_files=["res://.godot/imported/busy_hourglass_outline_detail.png-3c3880ee7f19c8ee36c5167f76ad4ef8.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bicmfr5dw4gku"
-path="res://.godot/imported/progress_CW_75.png-c000f950bbce481287ee2039e584cb0d.ctex"
+uid="uid://2irsvv2o1fbw"
+path="res://.godot/imported/progress_CW_25.png-5a4608fdab312e2a67cefd24bf36b055.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icons/skils/progress_CW_75.png"
-dest_files=["res://.godot/imported/progress_CW_75.png-c000f950bbce481287ee2039e584cb0d.ctex"]
+source_file="res://icons/skills/progress_CW_25.png"
+dest_files=["res://.godot/imported/progress_CW_25.png-5a4608fdab312e2a67cefd24bf36b055.ctex"]
 
 [params]
 

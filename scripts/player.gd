@@ -17,7 +17,7 @@ var skill_timer : int = 2
 var skill_time : int = 2
 var time_warp_positions : Array[Transform3D] #= [Vector3.ZERO,Vector3.ZERO,Vector3.ZERO,Vector3.ZERO]
 var time_warp_hps : Array[float]
-var time_warp_cooldown : float = 1
+var time_warp_cooldown : float = 5
 var time_warp_counter : int = 1
 var is_time_warping : bool = false
 var delta_modifier : float = 1
@@ -73,6 +73,7 @@ func _physics_process(delta):
 	
 func _process(delta: float) -> void:
 	time_warp_cooldown -= delta
+	$GhostMarkers.visible = time_warp_cooldown <= 0
 	if ui.is_shop_open:
 		return
 	if not is_reloading and Input.is_action_pressed("shoot"):
@@ -115,7 +116,6 @@ func _input(event):
 		await($Shockwave/ShockwaveAnim.animation_finished)
 		$Shockwave/ShockwaveAnim.speed_scale *= .25
 	if event.is_action("use_skill_2") and time_warp_cooldown < 0:
-		time_warp_cooldown = 1
 		time_warp()
 	if event.is_action_pressed("use_skill_3"):
 		toggle_time_slow()
@@ -235,9 +235,12 @@ func time_warp():
 		await(get_tree().create_timer(.035).timeout)
 	Engine.time_scale = 1
 	is_time_warping = false
+	for child in $GhostMarkers.get_children():
+		child.global_position = Vector3(0,-20,0)
+	time_warp_cooldown = 5
 	
 func add_time_warp_position():
-	if is_time_warping:
+	if is_time_warping or time_warp_cooldown > 0:
 		return
 	time_warp_hps.push_back(health)
 	time_warp_positions.push_back(transform)

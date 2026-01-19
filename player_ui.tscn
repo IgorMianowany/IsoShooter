@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy2ygr54krqvv"]
+[gd_scene load_steps=5 format=3 uid="uid://dy2ygr54krqvv"]
 
 [ext_resource type="Script" uid="uid://dkyxfivhnrmdd" path="res://scripts/player_ui.gd" id="1_lwipk"]
 [ext_resource type="PackedScene" uid="uid://dmc0lybjpat45" path="res://skill_icon.tscn" id="2_5m0x8"]
+[ext_resource type="Texture2D" uid="uid://ddhvbrb1m7p2p" path="res://icons/skills/busy_hourglass_outline.png" id="3_pc08v"]
+[ext_resource type="Texture2D" uid="uid://cw2khpl8ejjol" path="res://icons/skills/rewind.png" id="4_tybkg"]
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -127,8 +129,13 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="SkillIcon" parent="CanvasLayer/MarginContainer4/HBoxContainer" instance=ExtResource("2_5m0x8")]
+[node name="TimeSlow" parent="CanvasLayer/MarginContainer4/HBoxContainer" instance=ExtResource("2_5m0x8")]
 layout_mode = 2
+icon = ExtResource("3_pc08v")
+
+[node name="Rewind" parent="CanvasLayer/MarginContainer4/HBoxContainer" instance=ExtResource("2_5m0x8")]
+layout_mode = 2
+icon = ExtResource("4_tybkg")
 
 [node name="TimeSlowToggleResource" type="ProgressBar" parent="CanvasLayer/MarginContainer4/HBoxContainer"]
 custom_minimum_size = Vector2(250, 40)
