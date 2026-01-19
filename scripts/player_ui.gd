@@ -15,7 +15,7 @@ var is_shop_open : bool = false
 @onready var weapon1 : Label = $CanvasLayer/VBoxContainer/MarginContainer/Weapon1
 @onready var weapon2 : Label = $CanvasLayer/VBoxContainer/MarginContainer2/Weapon2
 @onready var time_slow_icon : SkillIcon = $CanvasLayer/MarginContainer4/HBoxContainer/TimeSlow
-@onready var rewind_icon : SkillIcon = $CanvasLayer/MarginContainer4/HBoxContainer/Rewind
+@onready var time_warp_icon : SkillIcon = $CanvasLayer/MarginContainer4/HBoxContainer/TimeWarp
 @onready var time_slow_resource : ProgressBar = $CanvasLayer/MarginContainer4/HBoxContainer/TimeSlowToggleResource
 
 func _ready() -> void:
@@ -25,6 +25,8 @@ func _ready() -> void:
 	EventBus.upgrade_selected.connect(update_weapons)
 	time_slow_resource.max_value = player.time_slow_resource
 	time_slow_icon.max_progress = player.time_stop_cooldown
+	time_warp_icon.max_progress = player.time_warp_cooldown
+	#time_warp_icon.toggle_fill_type(TextureProgressBar.FILL_COUNTER_CLOCKWISE)
 	
 func _process(_delta: float) -> void:
 	health.text = str(int(player.health)) + "/" + str(int(player.max_health))
@@ -37,10 +39,12 @@ func _process(_delta: float) -> void:
 		time_slow_icon.toggle_fill_type(TextureProgressBar.FILL_COUNTER_CLOCKWISE)
 	else:
 		time_slow_icon.toggle_fill_type(TextureProgressBar.FILL_CLOCKWISE)
+		
 
 	time_slow_resource.value = player.time_slow_resource
 	time_slow_icon.max_progress = player.time_stop_cooldown
 	time_slow_icon.progress = player.time_stop_cooldown - player.time_stop_cooldown_timer
+	time_warp_icon.progress = time_warp_icon.max_progress - player.time_warp_cooldown
 	
 	
 	
